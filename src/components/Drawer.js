@@ -1,6 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import {
+    makeStyles
+} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 
@@ -10,9 +12,13 @@ import Typography from '@material-ui/core/Typography';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import CartCard from './cartCard';
 
-import { connect } from 'react-redux';
+import {
+    connect
+} from 'react-redux';
 
-import { Link } from 'react-router-dom';
+import {
+    Link
+} from 'react-router-dom';
 
 const useStyles = makeStyles({
     list: {
@@ -24,7 +30,12 @@ const useStyles = makeStyles({
 });
 
 function SideDrawer(props) {
-    const { shoes, shirts, jeans, cartItem } = props;
+    const {
+        shoes,
+        shirts,
+        jeans,
+        cartItem
+    } = props;
     const classes = useStyles();
     const [state, setState] = React.useState({
         right: false,
@@ -53,26 +64,39 @@ function SideDrawer(props) {
             })
         }
         role = "presentation"
-        onClick = { toggleDrawer(anchor, false) }
-        onKeyDown = { toggleDrawer(anchor, false) } >
+        onClick = {
+            toggleDrawer(anchor, false)
+        }
+        onKeyDown = {
+            toggleDrawer(anchor, false)
+        } >
         <
-        Typography color = "textSecondary" > { ' ' } <
+        Typography color = "textSecondary" > {
+            ' '
+        } <
         h1 style = {
             {
                 margin: 'auto',
                 textAlign: 'center',
             }
-        } >
-        { ' ' }
-        Cart { ' ' } <
-        /h1> <
-        /Typography> <
+        } > {
+            ' '
+        }
+        Cart {
+            ' '
+        } <
+        /h1> < /
+        Typography > <
         Divider / >
 
         <
-        Typography color = "textSecondary" > { ' ' } <
-        h3 > Total Amount: Rs { props.bill } < /h3> <
-        /Typography>
+        Typography color = "textSecondary" > {
+            ' '
+        } <
+        h3 > Total Amount: Rs {
+            props.bill
+        } < /h3> < /
+        Typography >
 
         {
             cartItem.map((item) => {
@@ -85,18 +109,36 @@ function SideDrawer(props) {
                                 ...shoe,
                                 quantity: item.quantity,
                             };
+                        } else {
+                            return null;
                         }
                     });
 
                     return shoeItem.map((shoe) => ( <
-                        CartCard id = { shoe.id }
-                        title = { shoe.name }
-                        image = { shoe.img }
-                        price = { shoe.price }
-                        quantity = { shoe.quantity }
-                        removeItem = { props.removeItem }
-                        decrementQuantity = { props.decrementQuantity }
-                        incrementQuantity = { props.incrementQuantity }
+                        CartCard id = {
+                            shoe.id
+                        }
+                        title = {
+                            shoe.name
+                        }
+                        image = {
+                            shoe.img
+                        }
+                        price = {
+                            shoe.price
+                        }
+                        quantity = {
+                            shoe.quantity
+                        }
+                        removeItem = {
+                            props.removeItem
+                        }
+                        decrementQuantity = {
+                            props.decrementQuantity
+                        }
+                        incrementQuantity = {
+                            props.incrementQuantity
+                        }
                         />
                     ));
                 } else {
@@ -116,18 +158,36 @@ function SideDrawer(props) {
                                 ...shirt,
                                 quantity: item.quantity,
                             };
+                        } else {
+                            return null;
                         }
                     });
 
                     return shirtItem.map((shirt) => ( <
-                        CartCard id = { shirt.id }
-                        title = { shirt.name }
-                        image = { shirt.img }
-                        price = { shirt.price }
-                        removeItem = { props.removeItem }
-                        quantity = { shirt.quantity }
-                        decrementQuantity = { props.decrementQuantity }
-                        incrementQuantity = { props.incrementQuantity }
+                        CartCard id = {
+                            shirt.id
+                        }
+                        title = {
+                            shirt.name
+                        }
+                        image = {
+                            shirt.img
+                        }
+                        price = {
+                            shirt.price
+                        }
+                        removeItem = {
+                            props.removeItem
+                        }
+                        quantity = {
+                            shirt.quantity
+                        }
+                        decrementQuantity = {
+                            props.decrementQuantity
+                        }
+                        incrementQuantity = {
+                            props.incrementQuantity
+                        }
                         />
                     ));
                 } else {
@@ -147,18 +207,36 @@ function SideDrawer(props) {
                                 ...jean,
                                 quantity: item.quantity,
                             };
+                        } else {
+                            return null;
                         }
                     });
 
                     return jeanItem.map((jean) => ( <
-                        CartCard id = { jean.id }
-                        title = { jean.name }
-                        image = { jean.img }
-                        price = { jean.price }
-                        quantity = { jean.quantity }
-                        removeItem = { props.removeItem }
-                        decrementQuantity = { props.decrementQuantity }
-                        incrementQuantity = { props.incrementQuantity }
+                        CartCard id = {
+                            jean.id
+                        }
+                        title = {
+                            jean.name
+                        }
+                        image = {
+                            jean.img
+                        }
+                        price = {
+                            jean.price
+                        }
+                        quantity = {
+                            jean.quantity
+                        }
+                        removeItem = {
+                            props.removeItem
+                        }
+                        decrementQuantity = {
+                            props.decrementQuantity
+                        }
+                        incrementQuantity = {
+                            props.incrementQuantity
+                        }
                         />
                     ));
                 } else {
@@ -189,10 +267,10 @@ function SideDrawer(props) {
                 Button variant = "outlined"
                 color = "primary" >
                 <
-                Typography variant = "button" > Check Out < /Typography>{' '} <
-                /Button> <
-                /Link> <
-                /div>
+                Typography variant = "button" > Check Out < /Typography>{' '} < /
+                Button > <
+                /Link> < /
+                div >
             ) : null
         } <
         /div>
@@ -209,17 +287,30 @@ function SideDrawer(props) {
                 padding: '10px',
             }
         }
-        onClick = { toggleDrawer('right', true) } >
+        onClick = {
+            toggleDrawer('right', true)
+        } >
         <
         ShoppingCartIcon / >
         <
         /Button>{' '} <
-        Drawer anchor = { 'right' }
-        open = { state['right'] }
-        onClose = { toggleDrawer('right', false) } >
-        { ' ' } { list('right') } { ' ' } <
-        /Drawer>{' '} <
-        /div>
+        Drawer anchor = {
+            'right'
+        }
+        open = {
+            state['right']
+        }
+        onClose = {
+            toggleDrawer('right', false)
+        } > {
+            ' '
+        } {
+            list('right')
+        } {
+            ' '
+        } <
+        /Drawer>{' '} < /
+        div >
     );
 }
 
