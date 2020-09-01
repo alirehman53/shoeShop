@@ -2,13 +2,17 @@ import ItemReducer from './ItemReducer'
 import {
     combineReducers
 } from 'redux'
-import { firestoreReducer } from 'redux-firestore';
-import { firebaseReducer } from 'react-redux-firebase'
+import {
+    firestoreReducer
+} from 'redux-firestore';
+import {
+    firebaseReducer
+} from 'react-redux-firebase'
 
 const rootReducer = combineReducers({
     ItemReducer: ItemReducer,
-	firebase: firebaseReducer,
-	firestore: firestoreReducer
+    firebase: firebaseReducer,
+    firestore: firestoreReducer
 });
 
 

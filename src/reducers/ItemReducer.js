@@ -24,12 +24,6 @@ import jeans6 from '../images/jeans/jean6.jpg';
 import jeans7 from '../images/jeans/jean7.jpg';
 import jeans8 from '../images/jeans/jean8.jpg';
 
-import {
-    connect
-} from 'react-redux';
-
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
 
 
 const initState = {
@@ -186,10 +180,10 @@ const initState = {
 };
 
 const ItemReducer = (state = initState, action) => {
-	
+
     if (action.type === 'Add_To_Cart') {
-		
-		
+
+
         let newCart = state.cartItem;
         let existence = newCart.filter((item) => item.id === action.item.id);
 
@@ -198,14 +192,14 @@ const ItemReducer = (state = initState, action) => {
                 ...action.item,
                 quantity: 1,
             }, ]);
-        
+
             let amt = 0;
 
-        
+
 
             if (newCart) {
-				
-          
+
+
 
                 for (let i = 0; i < newCart.length; i++) {
                     amt += newCart[i].price * newCart[i].quantity;
@@ -220,12 +214,12 @@ const ItemReducer = (state = initState, action) => {
         }
     } else if (action.type === 'Remove_Item') {
         let newCart = state.cartItem.filter((item) => item.id !== action.item.id);
-      
+
         let amt = 0;
 
 
         if (newCart.length !== 0) {
-    
+
 
             for (let i = 0; i < newCart.length; i++) {
                 amt += newCart[i].price * newCart[i].quantity;
@@ -246,9 +240,9 @@ const ItemReducer = (state = initState, action) => {
         let newCart = state.cartItem.filter((item) => item.id !== action.item.id);
         newCart = newCart.concat([item]);
 
-      
+
         if (newCart.length !== 0) {
-       
+
 
             for (let i = 0; i < newCart.length; i++) {
                 amt += newCart[i].price * newCart[i].quantity;
@@ -261,7 +255,7 @@ const ItemReducer = (state = initState, action) => {
             bill: amt,
         };
     } else if (action.type === 'Decrement_Quantity') {
-		let amt = 0;
+        let amt = 0;
 
         let item = state.cartItem.find((item) => item.id === action.item.id);
         item.quantity -= 1;
@@ -269,9 +263,9 @@ const ItemReducer = (state = initState, action) => {
         let newCart = state.cartItem.filter((item) => item.id !== action.item.id);
         newCart = newCart.concat([item]);
 
-      
+
         if (newCart.length !== 0) {
-       
+
 
             for (let i = 0; i < newCart.length; i++) {
                 amt += newCart[i].price * newCart[i].quantity;
@@ -283,12 +277,11 @@ const ItemReducer = (state = initState, action) => {
             cartItem: newCart,
             bill: amt,
         };
-       
-       
+
+
     }
 
     return state;
 };
 
 export default ItemReducer;
-

@@ -10,8 +10,12 @@ import {
     addToCart
 } from '../reducers/actions/AddToCart'
 
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
+import {
+    firestoreConnect
+} from 'react-redux-firebase'
+import {
+    compose
+} from 'redux'
 
 function Shoes(props) {
     console.log(props);
@@ -28,7 +32,7 @@ function Shoes(props) {
         } >
 
         {
-            shoes?shoes.map(
+            shoes ? shoes.map(
                 (shoe) =>
 
                 <
@@ -52,7 +56,7 @@ function Shoes(props) {
 
                 />
 
-            ):null
+            ) : null
 
 
         }
@@ -63,9 +67,9 @@ function Shoes(props) {
 }
 
 function mapStateToProps(state) {
-	let shoes = null;
-	shoes = state.firestore.ordered.shoes? state.firestore.ordered.shoes: null;
-	
+    let shoes = null;
+    shoes = state.firestore.ordered.shoes ? state.firestore.ordered.shoes : null;
+
     return {
         shoes: shoes
     }
@@ -89,17 +93,8 @@ function mapDispatchToProps(dispatch) {
 
 
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([{
-    collection: 'shoes'
-  }])
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([{
+        collection: 'shoes'
+    }])
 )(Shoes);
-
-
-
-
-
-
-
-
-

@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import {
     createStore,
     applyMiddleware,
-    compose
+
 } from 'redux';
 import {
     Provider
@@ -14,17 +14,15 @@ import {
 import rootReducer from './reducers/rootReducer';
 import thunk from 'redux-thunk';
 import {
-    reduxFirestore,
-    getFirestore,
-    createFirestoreInstance,
+   
+    createFirestoreInstance
 } from 'redux-firestore';
 import {
     ReactReduxFirebaseProvider,
-    getFirebase
+ 
 } from 'react-redux-firebase';
 import fbConfig from './config/fbConfig';
-import firebase from 'firebase/app';
-//import { store } from './reducers/store';
+
 
 const store = createStore(rootReducer,applyMiddleware(thunk));
 console.log(store.getState())
