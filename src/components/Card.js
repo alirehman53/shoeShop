@@ -102,7 +102,7 @@ export default function MediaCard(props) {
     const classes = useStyles();
 
     const handleClick = () => {
-        props.addToCart(props.id);
+        props.addToCart({id:props.id,img:props.image,title:props.title,price:props.price});
     };
 
     return ( <

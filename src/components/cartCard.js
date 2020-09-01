@@ -46,17 +46,17 @@ export default function CartCard(props) {
     const classes = useStyles();
 
     const handleClick = (evt) => {
-        props.removeItem(props.id);
+        props.removeItem({id:props.id,img:props.image,title:props.title,price:props.price});
         evt.stopPropagation();
     };
 
     const increment = (evt) => {
-        props.incrementQuantity(props.id);
+        props.incrementQuantity({id:props.id,img:props.image,title:props.title,price:props.price});
         evt.stopPropagation();
     };
 
     const decrement = (evt) => {
-        props.decrementQuantity(props.id);
+        props.decrementQuantity({id:props.id,img:props.image,title:props.title,price:props.price});
         evt.stopPropagation(evt);
     };
 

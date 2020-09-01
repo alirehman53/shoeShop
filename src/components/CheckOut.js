@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
+import {
+    makeStyles
+} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 
@@ -10,10 +12,16 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
-import { connect } from 'react-redux';
+import {
+    connect
+} from 'react-redux';
 
-import { Link } from 'react-router-dom';
+import {
+    Link
+} from 'react-router-dom';
 import styled from 'styled-components';
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -60,9 +68,12 @@ function ColorTextFields() {
             {
                 color: 'grey',
             }
-        } >
-        { ' ' }
-        First Name: { ' ' } <
+        } > {
+            ' '
+        }
+        First Name: {
+            ' '
+        } <
         /Typography>{' '} <
         br / >
         <
@@ -79,9 +90,12 @@ function ColorTextFields() {
             {
                 color: 'grey',
             }
-        } >
-        { ' ' }
-        Last Name: { ' ' } <
+        } > {
+            ' '
+        }
+        Last Name: {
+            ' '
+        } <
         /Typography>{' '} <
         br / >
         <
@@ -98,9 +112,12 @@ function ColorTextFields() {
             {
                 color: 'grey',
             }
-        } >
-        { ' ' }
-        Email: { ' ' } <
+        } > {
+            ' '
+        }
+        Email: {
+            ' '
+        } <
         /Typography>{' '} <
         br / >
         <
@@ -117,9 +134,12 @@ function ColorTextFields() {
             {
                 color: 'grey',
             }
-        } >
-        { ' ' }
-        Phone Number: { ' ' } <
+        } > {
+            ' '
+        }
+        Phone Number: {
+            ' '
+        } <
         /Typography>{' '} <
         br / >
         <
@@ -129,16 +149,23 @@ function ColorTextFields() {
         color = "secondary" /
         >
         <
-        /label>{' '} <
-        /div>{' '} <
+        /label>{' '} < /
+        div > {
+            ' '
+        } <
         Typography gutterBottom variant = "h6"
         style = {
             {
                 textAlign: 'center',
             }
         }
-        component = "h6" >
-        { ' ' } { 'Shipping Address' } { ' ' } <
+        component = "h6" > {
+            ' '
+        } {
+            'Shipping Address'
+        } {
+            ' '
+        } <
         /Typography>{' '} <
         Divider style = {
             {
@@ -159,9 +186,12 @@ function ColorTextFields() {
             {
                 color: 'grey',
             }
-        } >
-        { ' ' }
-        Address Line - 1: { ' ' } <
+        } > {
+            ' '
+        }
+        Address Line - 1: {
+            ' '
+        } <
         /Typography>{' '} <
         br / >
         <
@@ -178,9 +208,12 @@ function ColorTextFields() {
             {
                 color: 'grey',
             }
-        } >
-        { ' ' }
-        Address Line - 2: { ' ' } <
+        } > {
+            ' '
+        }
+        Address Line - 2: {
+            ' '
+        } <
         /Typography>{' '} <
         br / >
         <
@@ -197,9 +230,12 @@ function ColorTextFields() {
             {
                 color: 'grey',
             }
-        } >
-        { ' ' }
-        CITY: { ' ' } <
+        } > {
+            ' '
+        }
+        CITY: {
+            ' '
+        } <
         /Typography>{' '} <
         br / >
         <
@@ -216,9 +252,12 @@ function ColorTextFields() {
             {
                 color: 'grey',
             }
-        } >
-        { ' ' }
-        STATE: { ' ' } <
+        } > {
+            ' '
+        }
+        STATE: {
+            ' '
+        } <
         /Typography>{' '} <
         br / >
         <
@@ -228,8 +267,10 @@ function ColorTextFields() {
         color = "secondary" /
         >
         <
-        /label>{' '} <
-        /div>{' '} <
+        /label>{' '} < /
+        div > {
+            ' '
+        } <
         /form>
     );
 }
@@ -248,8 +289,13 @@ function Form() {
                 textAlign: 'center',
             }
         }
-        component = "h6" >
-        { ' ' } { 'Delivery Details' } { ' ' } <
+        component = "h6" > {
+            ' '
+        } {
+            'Delivery Details'
+        } {
+            ' '
+        } <
         /Typography>{' '} <
         Divider style = {
             {
@@ -259,8 +305,10 @@ function Form() {
         />{' '} <
         ColorTextFields / >
         <
-        /CardContent>{' '} <
-        /CardActionArea>{' '} <
+        /CardContent>{' '} < /
+        CardActionArea > {
+            ' '
+        } <
         /Card>
     );
 }
@@ -279,8 +327,13 @@ function Order(props) {
                 textAlign: 'center',
             }
         }
-        component = "h6" >
-        { ' ' } { 'Order Summary' } { ' ' } <
+        component = "h6" > {
+            ' '
+        } {
+            'Order Summary'
+        } {
+            ' '
+        } <
         /Typography>{' '} <
         Divider style = {
             {
@@ -303,16 +356,48 @@ function Order(props) {
                 color: 'grey',
             }
         }
-        component = "h6" >
-        { ' ' } { 'Payment Method: Cash On Delivery Only' } { ' ' } <
+        component = "h6" > {
+            ' '
+        } {
+            'Payment Method: Cash On Delivery Only'
+        } {
+            ' '
+        } <
         /Typography>{' '} <
         Divider style = {
             {
                 backgroundColor: 'grey',
             }
         }
-        />{' '} <
-        /div>{' '} <
+        />{' '} < /
+        div > {
+            ' '
+        } <
+        div >
+        <
+        Typography gutterBottom variant = "h6"
+        style = {
+            {
+                color: 'grey',
+            }
+        }
+        component = "h6" > {
+            ' '
+        } {
+            'SHIPPING CHARGES: RS-69'
+        } {
+            ' '
+        } <
+        /Typography>{' '} <
+        Divider style = {
+            {
+                backgroundColor: 'grey',
+            }
+        }
+        />{' '} < /
+        div > {
+            ' '
+        } <
         div >
         <
         Typography gutterBottom variant = "h6"
@@ -322,15 +407,21 @@ function Order(props) {
             }
         }
         component = "h6" >
-        { ' ' } { 'SHIPPING CHARGES: RS-69' } { ' ' } <
+        SUBTOTAL: Rs - {
+            props.bill
+        } {
+            ' '
+        } <
         /Typography>{' '} <
         Divider style = {
             {
                 backgroundColor: 'grey',
             }
         }
-        />{' '} <
-        /div>{' '} <
+        />{' '} < /
+        div > {
+            ' '
+        } <
         div >
         <
         Typography gutterBottom variant = "h6"
@@ -340,33 +431,21 @@ function Order(props) {
             }
         }
         component = "h6" >
-        SUBTOTAL: Rs - { props.bill } { ' ' } <
+        TOTAL: RS - {
+            props.bill + 69
+        } {
+            ' '
+        } <
         /Typography>{' '} <
         Divider style = {
             {
                 backgroundColor: 'grey',
             }
         }
-        />{' '} <
-        /div>{' '} <
-        div >
-        <
-        Typography gutterBottom variant = "h6"
-        style = {
-            {
-                color: 'grey',
-            }
-        }
-        component = "h6" >
-        TOTAL: RS - { props.bill + 69 } { ' ' } <
-        /Typography>{' '} <
-        Divider style = {
-            {
-                backgroundColor: 'grey',
-            }
-        }
-        />{' '} <
-        /div>{' '} <
+        />{' '} < /
+        div > {
+            ' '
+        } <
         div style = {
             {
                 textAlign: 'center',
@@ -384,14 +463,20 @@ function Order(props) {
         Button variant = "outlined"
         color = "secondary" >
         <
-        Typography variant = "button" > PLACE ORDER < /Typography>{' '} <
-        /Button>{' '} <
-        /Link>{' '} <
-        /div>{' '} <
-        /div>{' '} <
-        /CardContent>{' '} <
-        /CardActionArea>{' '} <
-        /Card>
+        Typography variant = "button" > PLACE ORDER < /Typography>{' '} < /
+        Button > {
+            ' '
+        } <
+        /Link>{' '} < /
+        div > {
+            ' '
+        } <
+        /div>{' '} < /
+        CardContent > {
+            ' '
+        } <
+        /CardActionArea>{' '} < /
+        Card >
     );
 }
 
@@ -408,13 +493,17 @@ function MediaCard(props) {
   `;
 
     return ( <
-        Card className = { classes.root } >
+        Card className = {
+            classes.root
+        } >
         <
         CardActionArea >
         <
         CardContent >
         <
-        div className = { classes.ara } >
+        div className = {
+            classes.ara
+        } >
         <
         div >
         <
@@ -426,44 +515,71 @@ function MediaCard(props) {
                 gridArea: 'header',
             }
         }
-        component = "h2" >
-        { ' ' } { 'Your Order' } { ' ' } <
+        component = "h2" > {
+            ' '
+        } {
+            'Your Order'
+        } {
+            ' '
+        } <
         /Typography>{' '} <
         Divider style = {
             {
                 backgroundColor: 'grey',
             }
         }
-        />{' '} <
-        /div>{' '} <
+        />{' '} < /
+        div > {
+            ' '
+        } <
         CardWrapper >
         <
         Form / >
         <
-        Order bill = { props.bill }
-        />{' '} <
-        /CardWrapper>{' '} <
-        /div>{' '} <
-        /CardContent>{' '} <
-        /CardActionArea>{' '} <
-        /Card>
+        Order bill = {
+            props.bill
+        }
+        />{' '} < /
+        CardWrapper > {
+            ' '
+        } <
+        /div>{' '} < /
+        CardContent > {
+            ' '
+        } <
+        /CardActionArea>{' '} < /
+        Card >
     );
 }
 
 function CheckOut(props) {
-    let { bill } = props;
+    let {
+        bill
+    } = props;
     return ( <
-        div > { ' ' } <
-        MediaCard bill = { bill }
-        />{' '} <
-        /div>
+        div > {
+            ' '
+        } <
+        MediaCard bill = {
+            bill
+        }
+        />{' '} < /
+        div >
     );
 }
 
 function mapStateToProps(state) {
     return {
-        bill: state.bill,
+        bill: state.ItemReducer.bill,
     };
 }
 
-export default connect(mapStateToProps)(CheckOut);
+//export default connect(mapStateToProps)(CheckOut);
+
+
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{collection: 'shoes'} , {collection: 'shirts'} ,{collection: 'jeans'}])
+)(CheckOut);
+

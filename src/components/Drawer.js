@@ -10,7 +10,18 @@ import Divider from '@material-ui/core/Divider';
 
 import Typography from '@material-ui/core/Typography';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+
 import CartCard from './cartCard';
+import {
+    removeItem
+} from '../reducers/actions/RemoveItem'
+import {
+    incrementQuantity
+} from '../reducers/actions/IncrementQuantity'
+
+import {
+    decrementQuantity
+} from '../reducers/actions/DecrementQuantity'
 
 import {
     connect
@@ -19,6 +30,9 @@ import {
 import {
     Link
 } from 'react-router-dom';
+
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 
 const useStyles = makeStyles({
     list: {
@@ -29,6 +43,8 @@ const useStyles = makeStyles({
     },
 });
 
+
+
 function SideDrawer(props) {
     const {
         shoes,
@@ -36,6 +52,7 @@ function SideDrawer(props) {
         jeans,
         cartItem
     } = props;
+    console.log(props);
     const classes = useStyles();
     const [state, setState] = React.useState({
         right: false,
@@ -315,36 +332,43 @@ function SideDrawer(props) {
 }
 
 function mapStateToProps(state) {
+	let shirts = state.firestore.ordered.shirts?state.firestore.ordered.shirts:null;
+	let shoes= state.firestore.ordered.shoes? state.firestore.ordered.shoes: null;
+	let jeans = state.firestore.ordered.jeans? state.firestore.ordered.jeans: null;
     return {
-        cartItem: state.cartItem,
-        shirts: state.shirts,
-        jeans: state.jeans,
-        shoes: state.shoes,
-        bill: state.bill,
+        cartItem: state.ItemReducer.cartItem,
+        shirts: shirts,
+        jeans: jeans,
+        shoes: shoes,
+        bill: state.ItemReducer.bill,
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         removeItem: (id) => {
-            dispatch({
-                type: 'Remove_Item',
-                id: id,
-            });
+            dispatch(removeItem(id));
         },
         incrementQuantity: (id) => {
-            dispatch({
-                type: 'Increment_Quantity',
-                id: id,
-            });
+            dispatch(incrementQuantity(id));
         },
         decrementQuantity: (id) => {
-            dispatch({
-                type: 'Decrement_Quantity',
-                id: id,
-            });
+            dispatch(decrementQuantity(id));
         },
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SideDrawer);
+
+
+//export default connect(mapStateToProps, mapDispatchToProps)(SideDrawer);
+
+
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect([{collection: 'shoes'} , {collection: 'shirts'} ,{collection: 'jeans'}])
+)(SideDrawer);
+
+
+
+

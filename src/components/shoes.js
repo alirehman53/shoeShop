@@ -6,8 +6,12 @@ import {
 
 
 import MediaCard from "./Card";
+import {
+    addToCart
+} from '../reducers/actions/AddToCart'
 
-
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 
 function Shoes(props) {
     console.log(props);
@@ -24,7 +28,7 @@ function Shoes(props) {
         } >
 
         {
-            shoes.map(
+            shoes?shoes.map(
                 (shoe) =>
 
                 <
@@ -48,7 +52,7 @@ function Shoes(props) {
 
                 />
 
-            )
+            ):null
 
 
         }
@@ -59,19 +63,19 @@ function Shoes(props) {
 }
 
 function mapStateToProps(state) {
+	let shoes = null;
+	shoes = state.firestore.ordered.shoes? state.firestore.ordered.shoes: null;
+	
     return {
-        shoes: state.shoes
+        shoes: shoes
     }
 }
 
 
 function mapDispatchToProps(dispatch) {
     return {
-        addToCart: (id) => {
-            dispatch({
-                type: "Add_To_Cart",
-                id: id
-            })
+        addToCart: (item) => {
+            dispatch(addToCart(item))
         }
 
 
@@ -80,4 +84,22 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Shoes);
+//export default connect(mapStateToProps, mapDispatchToProps)(Shoes);
+
+
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect([{
+    collection: 'shoes'
+  }])
+)(Shoes);
+
+
+
+
+
+
+
+
+
