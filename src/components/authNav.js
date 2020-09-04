@@ -40,12 +40,14 @@ const useStyles = makeStyles((theme) => ({
         color: 'grey',
         fontWeight: 'bold',
         textDecoration: "none",
-        fontSize: "12px",
+        fontSize: "20px",
+        paddingRight: "10px"
 
     },
     button: {
         padding: "10px",
-        paddingBottom: "10px"
+        paddingBottom: "10px",
+
 
     }
 
