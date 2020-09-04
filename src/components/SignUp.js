@@ -62,7 +62,7 @@ function Signup(props) {
     } = props;
 
     if (errorAuth === 'Signup Successfull') {
-        window.location.href = "http://localhost:3000/";
+        window.location.pathname = "/";
 
     }
 
