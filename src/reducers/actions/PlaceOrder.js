@@ -34,7 +34,7 @@ export const PlaceOrder = (orderDetails) => {
 
         newOrder.set(Order).then(() => {
 
-            firestore.collection("users").doc(state.firebase.auth.uid).set({
+            firestore.collection("users").doc(state.firebase.auth.uid).update({
                 Cart: []
 
             }).then(

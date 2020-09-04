@@ -43,12 +43,6 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "20px",
         paddingRight: "10px"
 
-    },
-    button: {
-        padding: "10px",
-        paddingBottom: "10px",
-
-
     }
 
 
@@ -58,7 +52,8 @@ const useStyles = makeStyles((theme) => ({
 function AuthNav(props) {
     const classes = useStyles();
     const {
-        authentication
+        authentication,
+        profile
     } = props;
 
     return (
@@ -116,14 +111,30 @@ function AuthNav(props) {
 
             SignIn <
             /
-            Link > < /div> :
+            Link > < /div> : <
+            div
+
+            >
+
+            {
+
+                profile.Admin ?
+                <
+                Link to = "/admin"
+                className = {
+                    classes.link
+                } >
+
+                Admin Panel <
+                /
+                Link > : null
+            }
+
+
 
             <
             Button onClick = {
                 props.Logout
-            }
-            className = {
-                classes.button
             } >
 
 
@@ -137,6 +148,10 @@ function AuthNav(props) {
             LogOut <
             /Link>  < /
             Button >
+
+
+            <
+            /div>
 
 
         }
@@ -157,8 +172,10 @@ function AuthNav(props) {
 }
 
 const mapStateToProps = (s) => {
+
     return {
         authentication: s.firebase.auth,
+        profile: s.firebase.profile
     }
 }
 

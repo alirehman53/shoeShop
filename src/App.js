@@ -9,6 +9,7 @@ import CheckOut from "./components/CheckOut";
 import Ordered from "./components/Ordered";
 import Login from "./components/SignIn";
 import Signup from "./components/SignUp";
+import AdminPanel from "./components/AdminPanel";
 
 
 import {
@@ -99,6 +100,13 @@ function App() {
         Route path = "/logout" >
         <
         Login / >
+        <
+        /Route>
+
+        <
+        Route path = "/admin" >
+        <
+        AdminPanel / >
         <
         /Route>
 

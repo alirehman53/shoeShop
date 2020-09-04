@@ -54,12 +54,13 @@ export const SignUp = (User) => {
             User.password
         ).then(response => {
 
-            console.log(getFirestore());
             const firestore = getFirestore();
             return firestore.collection('users').doc(response.user.uid).set({
                 firstName: User.firstName,
                 lastName: User.lastName,
-                Cart: []
+                Cart: [],
+                Admin: false
+
             });
         }).then(() => {
             dispatch({
