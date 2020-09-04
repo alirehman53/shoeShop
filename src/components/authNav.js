@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold',
         textDecoration: "none",
         fontSize: "16px",
-        paddingRight: "5px"
+
 
     }
 
