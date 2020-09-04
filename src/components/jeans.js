@@ -7,22 +7,37 @@ import MediaCard from './Card';
 import {
     addToCart
 } from '../reducers/actions/AddToCart'
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
+import {
+    firestoreConnect
+} from 'react-redux-firebase'
+import {
+    compose
+} from 'redux'
+import styled from 'styled-components';
+
+
 
 function Jeans(props) {
     const {
-        jeans
+        jeans,
+
     } = props;
 
+    const CardWrapper = styled.div `
+    display: grid;
+    grid-area: content;
+    grid-template-columns: 1fr 1fr;
+    @media (max-width: 700px) {
+      grid-template-columns: 1fr;
+    }
+  `;
+
+
+
+
     return ( <
-        div style = {
-            {
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-            }
-        } > {
-            jeans?jeans.map((jean) => ( <
+        CardWrapper > {
+            jeans ? jeans.map((jean) => ( <
                 MediaCard id = {
                     jean.id
                 }
@@ -39,18 +54,18 @@ function Jeans(props) {
                     props.addToCart
                 }
                 />
-            )):null
+            )) : null
         } <
-        /div>
+        /CardWrapper>
     );
 }
 
 function mapStateToProps(state) {
     let jeans = null;
-	jeans = state.firestore.ordered.jeans? state.firestore.ordered.jeans: null;
-	
+    jeans = state.firestore.ordered.jeans ? state.firestore.ordered.jeans : null;
+
     return {
-        jeans: jeans
+        jeans: jeans,
     }
 }
 
@@ -66,8 +81,8 @@ function mapDispatchToProps(dispatch) {
 
 
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([{
-    collection: 'jeans'
-  }])
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([{
+        collection: 'jeans'
+    }])
 )(Jeans);

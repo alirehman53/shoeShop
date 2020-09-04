@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
+import {
+    makeStyles
+} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 
@@ -46,41 +48,84 @@ export default function CartCard(props) {
     const classes = useStyles();
 
     const handleClick = (evt) => {
-        props.removeItem({id:props.id,img:props.image,title:props.title,price:props.price});
+        props.removeItem({
+            id: props.id,
+            img: props.image,
+            title: props.title,
+            price: props.price
+        });
         evt.stopPropagation();
     };
 
     const increment = (evt) => {
-        props.incrementQuantity({id:props.id,img:props.image,title:props.title,price:props.price});
+        props.incrementQuantity({
+            id: props.id,
+            img: props.image,
+            title: props.title,
+            price: props.price,
+            quantity: props.quantity
+        });
         evt.stopPropagation();
     };
 
     const decrement = (evt) => {
-        props.decrementQuantity({id:props.id,img:props.image,title:props.title,price:props.price});
+        props.decrementQuantity({
+            id: props.id,
+            img: props.image,
+            title: props.title,
+            price: props.price,
+            quantity: props.quantity
+        });
         evt.stopPropagation(evt);
     };
 
     return ( <
-        Card className = { classes.root } >
+        Card className = {
+            classes.root
+        } >
         <
-        CardActionArea className = { classes.ara } >
+        CardActionArea className = {
+            classes.ara
+        } >
         <
-        CardMedia className = { classes.media }
-        image = { props.image }
-        title = { props.title }
+        CardMedia className = {
+            classes.media
+        }
+        image = {
+            props.image
+        }
+        title = {
+            props.title
+        }
         />{' '} <
-        CardContent className = { classes.content } >
+        CardContent className = {
+            classes.content
+        } >
         <
-        Typography gutterBottom variant = "h5"
-        className = { classes.type }
-        component = "h2" >
-        { ' ' } { props.title } { ' ' } <
+        Typography gutterBottom variant = "h6"
+        className = {
+            classes.type
+        }
+        component = "h6" > {
+            ' '
+        } {
+            props.title
+        } {
+            ' '
+        } <
         /Typography>{' '} <
         Typography variant = "body2"
         color = "textSecondary"
-        className = { classes.type }
-        component = "p" >
-        { ' ' } { 'Rs-' + props.price.toString() } { ' ' } <
+        className = {
+            classes.type
+        }
+        component = "p" > {
+            ' '
+        } {
+            'Rs-' + props.price.toString()
+        } {
+            ' '
+        } <
         /Typography> <
         div style = {
             {
@@ -91,14 +136,20 @@ export default function CartCard(props) {
         Button variant = "contained"
         color = "primary"
         onClick = {
-            (evt) => increment(evt) }
-        className = { classes.button } >
+            (evt) => increment(evt)
+        }
+        className = {
+            classes.button
+        } >
         <
         Typography gutterBottom variant = "h5"
-        component = "h2" > { ' ' } +
-        { ' ' } <
-        /Typography>{' '} <
-        /Button>
+        component = "h2" > {
+            ' '
+        } + {
+            ' '
+        } <
+        /Typography>{' '} < /
+        Button >
 
         <
         Typography gutterBottom variant = "h5"
@@ -108,32 +159,44 @@ export default function CartCard(props) {
                 margin: '5px',
                 color: 'grey',
             }
-        } >
-        { ' ' } { props.quantity } { ' ' } <
+        } > {
+            ' '
+        } {
+            props.quantity
+        } {
+            ' '
+        } <
         /Typography>
 
         <
         Button variant = "contained"
         color = "primary"
         onClick = {
-            (evt) => decrement(evt) }
-        className = { classes.button } >
+            (evt) => decrement(evt)
+        }
+        className = {
+            classes.button
+        } >
         <
         Typography gutterBottom variant = "h5"
-        component = "h2" > { ' ' } -
-        { ' ' } <
-        /Typography>{' '} <
-        /Button> <
+        component = "h2" > {
+            ' '
+        } - {
+            ' '
+        } <
+        /Typography>{' '} < /
+        Button > <
         /div> <
         Button variant = "contained"
         color = "secondary"
         onClick = {
-            (evt) => handleClick(evt) } >
+            (evt) => handleClick(evt)
+        } >
         <
-        Typography variant = "button" > Remove < /Typography>{' '} <
-        /Button> <
-        /CardContent>{' '} <
-        /CardActionArea> <
+        Typography variant = "button" > Remove < /Typography>{' '} < /
+        Button > <
+        /CardContent>{' '} < /
+        CardActionArea > <
         /Card>
     );
 }

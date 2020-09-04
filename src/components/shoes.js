@@ -5,6 +5,7 @@ import {
 
 
 
+
 import MediaCard from "./Card";
 import {
     addToCart
@@ -16,20 +17,28 @@ import {
 import {
     compose
 } from 'redux'
+import styled from 'styled-components';
 
 function Shoes(props) {
     console.log(props);
     const {
-        shoes
+        shoes,
+
     } = props;
 
+    const CardWrapper = styled.div `
+    display: grid;
+    grid-area: content;
+    grid-template-columns: 1fr 1fr;
+    @media (max-width: 700px) {
+      grid-template-columns: 1fr;
+    }
+  `;
+
+
+
     return ( <
-        div style = {
-            {
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr"
-            }
-        } >
+        CardWrapper >
 
         {
             shoes ? shoes.map(
@@ -62,7 +71,7 @@ function Shoes(props) {
         }
 
         <
-        /div >
+        /CardWrapper >
     );
 }
 
@@ -71,7 +80,8 @@ function mapStateToProps(state) {
     shoes = state.firestore.ordered.shoes ? state.firestore.ordered.shoes : null;
 
     return {
-        shoes: shoes
+        shoes: shoes,
+
     }
 }
 

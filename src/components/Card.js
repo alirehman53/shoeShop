@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
+import {
+    makeStyles
+} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 
@@ -12,9 +14,17 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
+
+
+import {
+    connect
+} from 'react-redux';
+
+
+
 const useStyles = makeStyles({
     root: {
-        width: '50vw',
+
         marginBottom: '8px',
         backgroundColor: 'grey',
         border: '4px solid white',
@@ -48,7 +58,11 @@ function ItemAddedNotification(props) {
 
     const handleClick = () => {
         props.clk();
-        setOpen(true);
+        if (props.auth.uid) {
+            setOpen(true);
+        }
+
+
     };
 
     const handleClose = (event, reason) => {
@@ -65,19 +79,28 @@ function ItemAddedNotification(props) {
         Button variant = "contained"
         color = "secondary"
         onClick = {
-            () => handleClick() } >
+            () => handleClick()
+        } >
         <
-        Typography variant = "button" > Add To Cart < /Typography>{' '} <
-        /Button>{' '} <
+        Typography variant = "button" > Add To Cart < /Typography>{' '} < /
+        Button > {
+            ' '
+        } <
         Snackbar anchorOrigin = {
             {
                 vertical: 'bottom',
                 horizontal: 'right',
             }
         }
-        open = { open }
-        autoHideDuration = { 6000 }
-        onClose = { handleClose }
+        open = {
+            open
+        }
+        autoHideDuration = {
+            6000
+        }
+        onClose = {
+            handleClose
+        }
         message = "Item Added To Cart"
         action = { <
             React.Fragment >
@@ -86,51 +109,119 @@ function ItemAddedNotification(props) {
             size = "small"
             ariaLabel = "close"
             color = "inherit"
-            onClick = { handleClose } >
+            onClick = {
+                handleClose
+            } >
             <
             CloseIcon fontSize = "small" / >
             <
-            /IconButton>{' '} <
-            /React.Fragment>
+            /IconButton>{' '} < /
+            React.Fragment >
         }
-        />{' '} <
-        /div>
+        />{' '} < /
+        div >
     );
 }
 
-export default function MediaCard(props) {
+function MediaCard(props) {
     const classes = useStyles();
+    const {
+        authentication
+    } = props;
 
     const handleClick = () => {
-        props.addToCart({id:props.id,img:props.image,title:props.title,price:props.price});
+        if (!authentication.uid) {
+            alert("Login Please");
+
+        } else {
+            props.addToCart({
+                id: props.id,
+                img: props.image,
+                title: props.title,
+                price: props.price
+            });
+
+        }
+
+
     };
 
     return ( <
-        Card className = { classes.root } >
+        Card className = {
+            classes.root
+        } >
         <
-        CardActionArea className = { classes.ara } >
+        CardActionArea className = {
+            classes.ara
+        } >
         <
-        CardMedia className = { classes.media }
-        image = { props.image }
-        title = { props.title }
+        CardMedia className = {
+            classes.media
+        }
+        image = {
+            props.image
+        }
+        title = {
+            props.title
+        }
         />{' '} <
-        CardContent className = { classes.content } >
+        CardContent className = {
+            classes.content
+        } >
         <
-        Typography gutterBottom variant = "h5"
-        className = { classes.type }
-        component = "h2" >
-        { ' ' } { props.title } { ' ' } <
+        Typography gutterBottom variant = "h6"
+        className = {
+            classes.type
+        }
+        component = "h6" > {
+            ' '
+        } {
+            props.title
+        } {
+            ' '
+        } <
         /Typography>{' '} <
         Typography variant = "body2"
-        className = { classes.type }
+        className = {
+            classes.type
+        }
         color = "textSecondary"
-        component = "p" >
-        { ' ' } { 'Rs-' + props.price.toString() } { ' ' } <
+        component = "p" > {
+            ' '
+        } {
+            'Rs-' + props.price.toString()
+        } {
+            ' '
+        } <
         /Typography> <
-        ItemAddedNotification clk = { handleClick }
-        /> <
-        /CardContent>{' '} <
-        /CardActionArea> <
-        /Card>
+        ItemAddedNotification auth = {
+            authentication
+        }
+        clk = {
+            handleClick
+        }
+        /> < /
+        CardContent > {
+            ' '
+        } <
+        /CardActionArea> < /
+        Card >
     );
 }
+
+
+
+function mapStateToProps(state) {
+
+    return {
+        authentication: state.firebase.auth
+
+    };
+};
+
+
+//export default connect(mapStateToProps, mapDispatchToProps)(Shoes);
+
+
+
+export default connect(mapStateToProps)(MediaCard);

@@ -1,11 +1,15 @@
 import React from 'react';
 import SimpleTabs from './components/NavBar';
+import AuthNav from './components/authNav';
 import Home from './components/Home';
 import Shirts from './components/shirts';
 import Shoes from './components/shoes';
 import Jeans from './components/jeans';
 import CheckOut from "./components/CheckOut";
 import Ordered from "./components/Ordered";
+import Login from "./components/SignIn";
+import Signup from "./components/SignUp";
+
 
 import {
     BrowserRouter,
@@ -18,6 +22,8 @@ function App() {
         div >
         <
         BrowserRouter >
+        <
+        AuthNav / >
         <
         SimpleTabs / >
 
@@ -70,6 +76,29 @@ function App() {
         <
         CheckOut / >
 
+        <
+        /Route>
+
+
+        <
+        Route path = "/signup" >
+        <
+        Signup / >
+        <
+        /Route>
+
+        <
+        Route path = "/signin" >
+        <
+        Login / >
+        <
+        /Route>
+
+
+        <
+        Route path = "/logout" >
+        <
+        Login / >
         <
         /Route>
 

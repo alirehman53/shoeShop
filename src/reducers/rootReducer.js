@@ -8,8 +8,9 @@ import {
 import {
     firebaseReducer
 } from 'react-redux-firebase'
-
+import authenticationReducer from './authReducer'
 const rootReducer = combineReducers({
+    authentication: authenticationReducer,
     ItemReducer: ItemReducer,
     firebase: firebaseReducer,
     firestore: firestoreReducer

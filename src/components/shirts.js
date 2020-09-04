@@ -6,8 +6,13 @@ import {
     addToCart
 } from '../reducers/actions/AddToCart'
 import MediaCard from './Card';
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
+import {
+    firestoreConnect
+} from 'react-redux-firebase'
+import {
+    compose
+} from 'redux'
+import styled from 'styled-components';
 
 function Shirts(props) {
     console.log(props);
@@ -15,15 +20,22 @@ function Shirts(props) {
         shirts
     } = props;
 
+
+    const CardWrapper = styled.div `
+    display: grid;
+    grid-area: content;
+    grid-template-columns: 1fr 1fr;
+    @media (max-width: 700px) {
+      grid-template-columns: 1fr;
+    }
+  `;
+
+
+
     return ( <
-        div style = {
-            {
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-            }
-        } > {
-			shirts?shirts.map(
-			    (shirt) =>  <
+        CardWrapper > {
+            shirts ? shirts.map(
+                (shirt) => <
                 MediaCard id = {
                     shirt.id
                 }
@@ -40,17 +52,18 @@ function Shirts(props) {
                     props.addToCart
                 }
                 />
-       
-			):null
+
+            ) : null
         } <
-        /div>
+        /CardWrapper>
     );
 }
 
 function mapStateToProps(state) {
-	let shirts = state.firestore.ordered.shirts?state.firestore.ordered.shirts:null;
+    let shirts = state.firestore.ordered.shirts ? state.firestore.ordered.shirts : null;
     return {
         shirts: shirts
+
     };
 }
 
@@ -67,10 +80,8 @@ function mapDispatchToProps(dispatch) {
 
 
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([{
-    collection: 'shirts'
-  }])
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([{
+        collection: 'shirts'
+    }])
 )(Shirts);
-
-

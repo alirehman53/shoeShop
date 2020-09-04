@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+    useState
+} from 'react';
 
 import {
     makeStyles
@@ -8,7 +10,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 
 import CardContent from '@material-ui/core/CardContent';
 
-import Button from '@material-ui/core/Button';
+
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
@@ -16,12 +18,16 @@ import {
     connect
 } from 'react-redux';
 
+
 import {
-    Link
-} from 'react-router-dom';
-import styled from 'styled-components';
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
+    firestoreConnect
+} from 'react-redux-firebase'
+import {
+    compose
+} from 'redux'
+import {
+    PlaceOrder
+} from '../reducers/actions/PlaceOrder'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -51,267 +57,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ColorTextFields() {
-    return ( <
-        form noValidate autoComplete = "off" >
-        <
-        div style = {
-            {
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-            }
-        } >
-        <
-        label >
-        <
-        Typography style = {
-            {
-                color: 'grey',
-            }
-        } > {
-            ' '
-        }
-        First Name: {
-            ' '
-        } <
-        /Typography>{' '} <
-        br / >
-        <
-        TextField id = "filled-secondary"
-        label = "First Name"
-        variant = "filled"
-        color = "secondary" /
-        >
-        <
-        /label>{' '} <
-        label >
-        <
-        Typography style = {
-            {
-                color: 'grey',
-            }
-        } > {
-            ' '
-        }
-        Last Name: {
-            ' '
-        } <
-        /Typography>{' '} <
-        br / >
-        <
-        TextField id = "filled-secondary"
-        label = "Last Name"
-        variant = "filled"
-        color = "secondary" /
-        >
-        <
-        /label>{' '} <
-        label >
-        <
-        Typography style = {
-            {
-                color: 'grey',
-            }
-        } > {
-            ' '
-        }
-        Email: {
-            ' '
-        } <
-        /Typography>{' '} <
-        br / >
-        <
-        TextField id = "filled-secondary"
-        label = "Email Address"
-        variant = "filled"
-        color = "secondary" /
-        >
-        <
-        /label>{' '} <
-        label >
-        <
-        Typography style = {
-            {
-                color: 'grey',
-            }
-        } > {
-            ' '
-        }
-        Phone Number: {
-            ' '
-        } <
-        /Typography>{' '} <
-        br / >
-        <
-        TextField id = "filled-secondary"
-        label = "Phone Number"
-        variant = "filled"
-        color = "secondary" /
-        >
-        <
-        /label>{' '} < /
-        div > {
-            ' '
-        } <
-        Typography gutterBottom variant = "h6"
-        style = {
-            {
-                textAlign: 'center',
-            }
-        }
-        component = "h6" > {
-            ' '
-        } {
-            'Shipping Address'
-        } {
-            ' '
-        } <
-        /Typography>{' '} <
-        Divider style = {
-            {
-                backgroundColor: 'grey',
-            }
-        }
-        />{' '} <
-        div style = {
-            {
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-            }
-        } >
-        <
-        label >
-        <
-        Typography style = {
-            {
-                color: 'grey',
-            }
-        } > {
-            ' '
-        }
-        Address Line - 1: {
-            ' '
-        } <
-        /Typography>{' '} <
-        br / >
-        <
-        TextField id = "filled-secondary"
-        label = "Address Line-1"
-        variant = "filled"
-        color = "secondary" /
-        >
-        <
-        /label>{' '} <
-        label >
-        <
-        Typography style = {
-            {
-                color: 'grey',
-            }
-        } > {
-            ' '
-        }
-        Address Line - 2: {
-            ' '
-        } <
-        /Typography>{' '} <
-        br / >
-        <
-        TextField id = "filled-secondary"
-        label = "Address Line-2"
-        variant = "filled"
-        color = "secondary" /
-        >
-        <
-        /label>{' '} <
-        label >
-        <
-        Typography style = {
-            {
-                color: 'grey',
-            }
-        } > {
-            ' '
-        }
-        CITY: {
-            ' '
-        } <
-        /Typography>{' '} <
-        br / >
-        <
-        TextField id = "filled-secondary"
-        label = "city"
-        variant = "filled"
-        color = "secondary" /
-        >
-        <
-        /label>{' '} <
-        label >
-        <
-        Typography style = {
-            {
-                color: 'grey',
-            }
-        } > {
-            ' '
-        }
-        STATE: {
-            ' '
-        } <
-        /Typography>{' '} <
-        br / >
-        <
-        TextField id = "filled-secondary"
-        label = "state"
-        variant = "filled"
-        color = "secondary" /
-        >
-        <
-        /label>{' '} < /
-        div > {
-            ' '
-        } <
-        /form>
-    );
-}
-
-function Form() {
-    return ( <
-        Card >
-        <
-        CardActionArea >
-        <
-        CardContent >
-        <
-        Typography gutterBottom variant = "h6"
-        style = {
-            {
-                textAlign: 'center',
-            }
-        }
-        component = "h6" > {
-            ' '
-        } {
-            'Delivery Details'
-        } {
-            ' '
-        } <
-        /Typography>{' '} <
-        Divider style = {
-            {
-                backgroundColor: 'grey',
-            }
-        }
-        />{' '} <
-        ColorTextFields / >
-        <
-        /CardContent>{' '} < /
-        CardActionArea > {
-            ' '
-        } <
-        /Card>
-    );
-}
 
 function Order(props) {
     return ( <
@@ -451,23 +196,9 @@ function Order(props) {
                 textAlign: 'center',
                 marginTop: '8px',
             }
-        } >
-        <
-        Link to = "/ordered"
-        style = {
-            {
-                textDecoration: 'none',
-            }
-        } >
-        <
-        Button variant = "outlined"
-        color = "secondary" >
-        <
-        Typography variant = "button" > PLACE ORDER < /Typography>{' '} < /
-        Button > {
+        } > {
             ' '
-        } <
-        /Link>{' '} < /
+        } < /
         div > {
             ' '
         } <
@@ -480,17 +211,422 @@ function Order(props) {
     );
 }
 
+function ColorTextFields(props) {
+
+    const [checkout, setCheckout] = useState({
+
+        email: '',
+        firstName: '',
+        lastName: '',
+        city: "",
+        province: "",
+        addressLine1: "",
+        addressLine2: "",
+        phone: ""
+
+
+
+
+    });
+
+    if (props.err) {
+        window.location.href = "http://localhost:3000/ordered";
+    }
+
+
+    const handleChange = (e) => {
+
+        setCheckout({
+            ...checkout,
+            [e.target.id]: e.target.value
+        })
+
+
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+
+        props.PlaceOrder(checkout);
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+    return ( <
+        form autoComplete = "off"
+        onSubmit = {
+            handleSubmit
+        } >
+        <
+        div style = {
+            {
+                display: 'grid',
+
+
+            }
+        } >
+        <
+        div style = {
+            {
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+            }
+        } >
+        <
+        label >
+        <
+        Typography style = {
+            {
+                color: 'grey',
+            }
+        } > {
+            ' '
+        }
+        First Name: {
+            ' '
+        } <
+        /Typography>{' '} <
+        br / >
+        <
+        TextField id = "firstName"
+        type = "text"
+        label = "First Name"
+        variant = "filled"
+        required
+
+        onChange = {
+            handleChange
+        }
+        color = "secondary" /
+        >
+        <
+        /label>{' '} <
+        label >
+        <
+        Typography style = {
+            {
+                color: 'grey',
+            }
+        } > {
+            ' '
+        }
+        Last Name: {
+            ' '
+        } <
+        /Typography>{' '} <
+        br / >
+        <
+        TextField id = "lastName"
+        type = "text"
+        label = "Last Name"
+        variant = "filled"
+        required onChange = {
+            handleChange
+        }
+        color = "secondary" /
+        >
+        <
+        /label>{' '} <
+        label >
+        <
+        Typography style = {
+            {
+                color: 'grey',
+            }
+        } > {
+            ' '
+        }
+        Email: {
+            ' '
+        } <
+        /Typography>{' '} <
+        br / >
+        <
+        TextField id = "email"
+        type = "email"
+        label = "Email Address"
+        variant = "filled"
+        required onChange = {
+            handleChange
+        }
+        color = "secondary" /
+        >
+        <
+        /label>{' '} <
+        label >
+        <
+        Typography style = {
+            {
+                color: 'grey',
+            }
+        } > {
+            ' '
+        }
+        Phone Number: {
+            ' '
+        } <
+        /Typography>{' '} <
+        br / >
+        <
+        TextField id = "phone"
+        pattern = "[0-9]*"
+        type = "text"
+        label = "Phone Number"
+        variant = "filled"
+        required onChange = {
+            handleChange
+        }
+        color = "secondary" /
+        >
+        <
+        /label>{' '} < /
+        div > {
+            ' '
+        } <
+        Typography gutterBottom variant = "h6"
+        style = {
+            {
+                textAlign: 'center',
+            }
+        }
+        component = "h6" > {
+            ' '
+        } {
+            'Shipping Address'
+        } {
+            ' '
+        } <
+        /Typography>{' '} <
+        Divider style = {
+            {
+                backgroundColor: 'grey',
+            }
+        }
+        />{' '} <
+        div style = {
+            {
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+            }
+        } >
+        <
+        label >
+        <
+        Typography style = {
+            {
+                color: 'grey',
+            }
+        } > {
+            ' '
+        }
+        Address Line - 1: {
+            ' '
+        } <
+        /Typography>{' '} <
+        br / >
+        <
+        TextField id = "addressLine1"
+        type = "text"
+        label = "Address Line-1"
+        variant = "filled"
+        required onChange = {
+            handleChange
+        }
+        color = "secondary" /
+        >
+        <
+        /label>{' '} <
+        label >
+        <
+        Typography style = {
+            {
+                color: 'grey',
+            }
+        } > {
+            ' '
+        }
+        Address Line - 2: {
+            ' '
+        } <
+        /Typography>{' '} <
+        br / >
+        <
+        TextField id = "addressLine2"
+        type = "text"
+        label = "Address Line-2"
+        required variant = "filled"
+        onChange = {
+            handleChange
+        }
+        color = "secondary" /
+        >
+        <
+        /label>{' '} <
+        label >
+        <
+        Typography style = {
+            {
+                color: 'grey',
+            }
+        } > {
+            ' '
+        }
+        CITY: {
+            ' '
+        } <
+        /Typography>{' '} <
+        br / >
+        <
+        TextField id = "city"
+        type = "text"
+        label = "city"
+        variant = "filled"
+        required onChange = {
+            handleChange
+        }
+        color = "secondary" /
+        >
+        <
+        /label>{' '} <
+        label >
+        <
+        Typography style = {
+            {
+                color: 'grey',
+            }
+        } > {
+            ' '
+        }
+        STATE: {
+            ' '
+        } <
+        /Typography>{' '} <
+        br / >
+        <
+        TextField id = "province"
+        type = "text"
+        label = "province"
+        variant = "filled"
+        required onChange = {
+            handleChange
+        }
+        color = "secondary" /
+        >
+        <
+        /label>{' '} < /
+        div >
+
+        <
+        div >
+
+        <
+        Order bill = {
+            props.bill
+        }
+        />
+
+        <
+        /div>
+
+        <
+        div style = {
+            {
+                margin: "auto",
+                marginTop: "10px"
+
+            }
+        } >
+
+
+        <
+
+        TextField type = "submit"
+        variant = "outlined"
+        color = "secondary"
+        value = "PLACE-ORDER" /
+        >
+
+        <
+        /div>
+
+
+        <
+        /div>
+
+
+        <
+        /form>
+    );
+}
+
+function Form(props) {
+
+    return ( <
+        Card >
+        <
+        CardActionArea >
+        <
+        CardContent >
+        <
+        Typography gutterBottom variant = "h6"
+        style = {
+            {
+                textAlign: 'center',
+            }
+        }
+        component = "h6" > {
+            ' '
+        } {
+            'Delivery Details'
+        } {
+            ' '
+        } <
+        /Typography>{' '} <
+        Divider style = {
+            {
+                backgroundColor: 'grey',
+            }
+        }
+        />{' '} <
+        ColorTextFields PlaceOrder = {
+            props.PlaceOrder
+        }
+        err = {
+            props.err
+        }
+
+        bill = {
+            props.bill
+        }
+        / > < /
+        CardContent > {
+            ' '
+        } < /
+        CardActionArea > {
+            ' '
+        } <
+        /Card>
+    );
+}
+
+
+
 function MediaCard(props) {
     const classes = useStyles();
 
-    const CardWrapper = styled.div `
-    display: grid;
-    grid-area: content;
-    grid-template-columns: 1fr 1fr;
-    @media (max-width: 1000px) {
-      grid-template-columns: 1fr;
-    }
-  `;
 
     return ( <
         Card className = {
@@ -532,15 +668,45 @@ function MediaCard(props) {
         div > {
             ' '
         } <
-        CardWrapper >
+        div >
         <
-        Form / >
-        <
-        Order bill = {
+        Form
+
+        bill = {
             props.bill
         }
-        />{' '} < /
-        CardWrapper > {
+        PlaceOrder = {
+            props.PlaceOrder
+        }
+        err = {
+            props.err
+        }
+
+        / >  <
+        div
+
+        style = {
+            {
+
+                textAlign: "center",
+                justifyContent: "center",
+                margin: "auto"
+            }
+        } >
+
+
+
+
+        <
+        /div>
+
+
+
+
+        {
+            ' '
+        } < /
+        div > {
             ' '
         } <
         /div>{' '} < /
@@ -555,6 +721,8 @@ function MediaCard(props) {
 function CheckOut(props) {
     let {
         bill
+
+
     } = props;
     return ( <
         div > {
@@ -563,23 +731,60 @@ function CheckOut(props) {
         MediaCard bill = {
             bill
         }
-        />{' '} < /
+
+        PlaceOrder = {
+            props.PlaceOrder
+        }
+
+        err = {
+            props.orderError
+        }
+
+
+        />
+
+
+        <
+        /
         div >
     );
 }
 
 function mapStateToProps(state) {
+    let Cart = state.firebase.profile.Cart ? state.firebase.profile.Cart : null;
+
+    let amt = 0;
+
+    if (Cart) {
+
+
+        for (let i = 0; i < Cart.length; i++) {
+            amt += Cart[i].price * Cart[i].quantity;
+        }
+
+    }
+
     return {
-        bill: state.ItemReducer.bill,
+        bill: amt,
+        orderError: state.ItemReducer.orderError
+
     };
 }
 
-//export default connect(mapStateToProps)(CheckOut);
-
+const mapDispatchToProps = (dispatch) => {
+    return {
+        PlaceOrder: (order) => dispatch(PlaceOrder(order))
+    }
+}
 
 
 export default compose(
-  connect(mapStateToProps),
-  firestoreConnect([{collection: 'shoes'} , {collection: 'shirts'} ,{collection: 'jeans'}])
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([{
+        collection: 'shoes'
+    }, {
+        collection: 'shirts'
+    }, {
+        collection: 'jeans'
+    }])
 )(CheckOut);
-

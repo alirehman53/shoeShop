@@ -31,8 +31,12 @@ import {
     Link
 } from 'react-router-dom';
 
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
+import {
+    firestoreConnect
+} from 'react-redux-firebase'
+import {
+    compose
+} from 'redux'
 
 const useStyles = makeStyles({
     list: {
@@ -52,7 +56,7 @@ function SideDrawer(props) {
         jeans,
         cartItem
     } = props;
-    console.log(props);
+    console.log(cartItem);
     const classes = useStyles();
     const [state, setState] = React.useState({
         right: false,
@@ -116,56 +120,59 @@ function SideDrawer(props) {
         Typography >
 
         {
-            cartItem.map((item) => {
-                let shoeItem = shoes.filter((shoe) => shoe.id === item.id);
+            cartItem ? (cartItem.map((item) => {
+                    let shoeItem = shoes.filter((shoe) => shoe.id === item.id);
 
-                if (shoeItem.length !== 0) {
-                    shoeItem = shoeItem.map((shoe) => {
-                        if (item.id === shoe.id) {
-                            return {
-                                ...shoe,
-                                quantity: item.quantity,
-                            };
-                        } else {
-                            return null;
-                        }
-                    });
+                    if (shoeItem.length !== 0) {
+                        shoeItem = shoeItem.map((shoe) => {
+                            if (item.id === shoe.id) {
+                                return {
+                                    ...shoe,
+                                    quantity: item.quantity,
+                                };
+                            } else {
+                                return null;
+                            }
+                        });
 
-                    return shoeItem.map((shoe) => ( <
-                        CartCard id = {
-                            shoe.id
-                        }
-                        title = {
-                            shoe.name
-                        }
-                        image = {
-                            shoe.img
-                        }
-                        price = {
-                            shoe.price
-                        }
-                        quantity = {
-                            shoe.quantity
-                        }
-                        removeItem = {
-                            props.removeItem
-                        }
-                        decrementQuantity = {
-                            props.decrementQuantity
-                        }
-                        incrementQuantity = {
-                            props.incrementQuantity
-                        }
-                        />
-                    ));
-                } else {
-                    return null;
-                }
-            })
+                        return shoeItem.map((shoe) => ( <
+                            CartCard id = {
+                                shoe.id
+                            }
+                            title = {
+                                shoe.name
+                            }
+                            image = {
+                                shoe.img
+                            }
+                            price = {
+                                shoe.price
+                            }
+                            quantity = {
+                                shoe.quantity
+                            }
+                            removeItem = {
+                                props.removeItem
+                            }
+                            decrementQuantity = {
+                                props.decrementQuantity
+                            }
+                            incrementQuantity = {
+                                props.incrementQuantity
+                            }
+                            />
+                        ));
+                    } else {
+                        return null;
+                    }
+                })
+
+            ) : null
+
         }
 
         {
-            cartItem.map((item) => {
+            cartItem ? (cartItem.map((item) => {
                 let shirtItem = shirts.filter((shirt) => shirt.id === item.id);
 
                 if (shirtItem.length !== 0) {
@@ -210,63 +217,65 @@ function SideDrawer(props) {
                 } else {
                     return null;
                 }
-            })
+            })) : null
         }
 
         {
-            cartItem.map((item) => {
-                let jeanItem = jeans.filter((jean) => jean.id === item.id);
+            cartItem ? (cartItem.map((item) => {
+                    let jeanItem = jeans.filter((jean) => jean.id === item.id);
 
-                if (jeanItem.length !== 0) {
-                    jeanItem = jeanItem.map((jean) => {
-                        if (item.id === jean.id) {
-                            return {
-                                ...jean,
-                                quantity: item.quantity,
-                            };
-                        } else {
-                            return null;
-                        }
-                    });
+                    if (jeanItem.length !== 0) {
+                        jeanItem = jeanItem.map((jean) => {
+                            if (item.id === jean.id) {
+                                return {
+                                    ...jean,
+                                    quantity: item.quantity,
+                                };
+                            } else {
+                                return null;
+                            }
+                        });
 
-                    return jeanItem.map((jean) => ( <
-                        CartCard id = {
-                            jean.id
-                        }
-                        title = {
-                            jean.name
-                        }
-                        image = {
-                            jean.img
-                        }
-                        price = {
-                            jean.price
-                        }
-                        quantity = {
-                            jean.quantity
-                        }
-                        removeItem = {
-                            props.removeItem
-                        }
-                        decrementQuantity = {
-                            props.decrementQuantity
-                        }
-                        incrementQuantity = {
-                            props.incrementQuantity
-                        }
-                        />
-                    ));
-                } else {
-                    return null;
-                }
-            })
+                        return jeanItem.map((jean) => ( <
+                            CartCard id = {
+                                jean.id
+                            }
+                            title = {
+                                jean.name
+                            }
+                            image = {
+                                jean.img
+                            }
+                            price = {
+                                jean.price
+                            }
+                            quantity = {
+                                jean.quantity
+                            }
+                            removeItem = {
+                                props.removeItem
+                            }
+                            decrementQuantity = {
+                                props.decrementQuantity
+                            }
+                            incrementQuantity = {
+                                props.incrementQuantity
+                            }
+                            />
+                        ));
+                    } else {
+                        return null;
+                    }
+                })
+
+            ) : null
         }
 
         <
         Divider / >
 
         {
-            cartItem.length !== 0 ? ( <
+            cartItem ? (cartItem.length !== 0 ? ( <
                 div style = {
                     {
                         marginTop: '8px',
@@ -288,7 +297,7 @@ function SideDrawer(props) {
                 Button > <
                 /Link> < /
                 div >
-            ) : null
+            ) : null) : null
         } <
         /div>
     );
@@ -332,15 +341,33 @@ function SideDrawer(props) {
 }
 
 function mapStateToProps(state) {
-	let shirts = state.firestore.ordered.shirts?state.firestore.ordered.shirts:null;
-	let shoes= state.firestore.ordered.shoes? state.firestore.ordered.shoes: null;
-	let jeans = state.firestore.ordered.jeans? state.firestore.ordered.jeans: null;
+    let shirts = state.firestore.ordered.shirts ? state.firestore.ordered.shirts : null;
+    let shoes = state.firestore.ordered.shoes ? state.firestore.ordered.shoes : null;
+    let jeans = state.firestore.ordered.jeans ? state.firestore.ordered.jeans : null;
+    let Cart = state.firebase.profile.Cart ? state.firebase.profile.Cart : null;
+
+    let amt = 0;
+
+
+
+
+    if (Cart) {
+
+
+        for (let i = 0; i < Cart.length; i++) {
+            amt += Cart[i].price * Cart[i].quantity;
+        }
+
+    }
+
+
+
     return {
-        cartItem: state.ItemReducer.cartItem,
+        cartItem: Cart,
         shirts: shirts,
         jeans: jeans,
         shoes: shoes,
-        bill: state.ItemReducer.bill,
+        bill: amt,
     };
 }
 
@@ -365,10 +392,12 @@ function mapDispatchToProps(dispatch) {
 
 
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([{collection: 'shoes'} , {collection: 'shirts'} ,{collection: 'jeans'}])
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([{
+        collection: 'shoes'
+    }, {
+        collection: 'shirts'
+    }, {
+        collection: 'jeans'
+    }])
 )(SideDrawer);
-
-
-
-
