@@ -25,7 +25,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '100%',
+        width: '100vw',
+		margin:'auto'
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),
@@ -91,26 +92,20 @@ function AdminPanel(props) {
                 } < /Typography> < /
                 AccordionSummary > <
                 AccordionDetails >
+				
+				<div   style={{display:"grid"}}>
 
                 <
-                div style = {
-                    {
-                        padding: "20px"
-                    }
-                } >
+                div  >
 
                 <
-                Typography > AMOUNT: Rs {
-                    o.amount
-                } < /Typography>
+                Typography > AMOUNT: Rs {o.amount} < /Typography>
+				
 
-                <
-                /div>
+                </div>
+				
 
-                <
-                div className = {
-                    classes.root
-                } >
+                <div  >
 
 
                 <
@@ -173,6 +168,11 @@ function AdminPanel(props) {
                 /Typography> < /
                 AccordionDetails > <
                 /Accordion> 
+				
+				</div>
+				
+				
+				<div>
 
 
                 <
@@ -221,6 +221,9 @@ function AdminPanel(props) {
                     /
                     AccordionDetails > <
                     /Accordion> 
+					
+					
+					</div>
 
 
                     <
