@@ -31,8 +31,7 @@ const useStyles = makeStyles((theme) => ({
     },
     bar: {
         backgroundColor: 'white',
-        height: "5vh",
-        paddingLeft: "30%"
+        height: "5vh"
 
 
     },
@@ -41,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold',
         textDecoration: "none",
         fontSize: "16px",
+		padding:"5px"
 
 
     }
