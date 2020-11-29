@@ -31,8 +31,8 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold',
     },
 	iconify: {
-   fontSize: "12px",
-   lineHeight: "1.2em",
+   fontSize: "48px",
+   lineHeight: "1.5em",
    marginLeft:"3vw",
    marginRight:"3vw"
 }
