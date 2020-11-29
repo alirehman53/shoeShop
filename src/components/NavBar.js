@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import shoes from '../images/shoes.ico';
 
 
 import {
@@ -29,9 +29,19 @@ const useStyles = makeStyles((theme) => ({
     link: {
         color: '#FFF',
         fontWeight: 'bold',
-    }
+    },
+	iconify: {
+   fontSize: "48px",
+   lineHeight: "1.5em",
+   marginLeft:"25px",
+   marginRight:"25px"
+}
 
 }));
+
+
+
+
 
 export default function SimpleTabs() {
     const classes = useStyles();
@@ -56,32 +66,38 @@ export default function SimpleTabs() {
         className = {
             classes.link
         } >
-        <
-        Tab label = "Home" / >
+        <div className={classes.iconify}>
+		<span className={"iconify"} data-icon="el:home" data-inline="false"></span>
+		</div>
         <
         /Link>{' '} <
         Link to = "Shirts"
         className = {
             classes.link
         } >
-        <
-        Tab label = "Shirts" / >
+		<div className={classes.iconify} >
+			<span className={"iconify"} data-icon="twemoji:t-shirt" data-inline="false"></span>
+		</div>
+        
         <
         /Link>{' '} <
         Link to = "Shoes"
         className = {
             classes.link
         } >
-        <
-        Tab label = "Shoes" / >
+        <div className={classes.iconify} >
+		<img src={shoes} alt={"shoe_icon"} />
+		</div>
         <
         /Link>{' '} <
         Link to = "Jeans"
         className = {
             classes.link
         } >
-        <
-        Tab label = "Jeans" / >
+		<div className={classes.iconify} >
+			<span className={"iconify"} data-icon="noto-v1:jeans" data-inline="false"></span>
+		</div>
+       
         <
         /Link> <
         SideDrawer / > {

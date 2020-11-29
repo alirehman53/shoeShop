@@ -66,10 +66,10 @@ function MediaCard(props) {
         Typography variant = "body2"
         color = "textSecondary"
         component = "p" > { ' ' } { props.description } { ' ' } <
-        /Typography>{' '} <
-        /CardContent>{' '} <
-        /CardActionArea>{' '} <
-        /Card>
+        /Typography>{' '} < /
+        CardContent > { ' ' } <
+        /CardActionArea>{' '} < /
+        Card >
     );
 }
 
@@ -95,10 +95,10 @@ function HeadingCard(props) {
         Typography variant = "body2"
         color = "textSecondary"
         component = "p" > { ' ' } { props.description } { ' ' } <
-        /Typography>{' '} <
-        /CardContent>{' '} <
-        /CardActionArea>{' '} <
-        /Card>
+        /Typography>{' '} < /
+        CardContent > { ' ' } <
+        /CardActionArea>{' '} < /
+        Card >
     );
 }
 
@@ -125,7 +125,8 @@ function BottomCard(props) {
         copyright© 2018 all rights reserved { ' ' } <
         /Typography>{' '} <
         div className = {
-            (classes.content, classes.ara) } >
+            (classes.content, classes.ara)
+        } >
         <
         Icon > facebook < /Icon> <InstagramIcon / >
         <
@@ -133,10 +134,10 @@ function BottomCard(props) {
         <
         RedditIcon / >
         <
-        /div>{' '} <
-        /CardContent>{' '} <
-        /CardActionArea>{' '} <
-        /Card>
+        /div>{' '} < /
+        CardContent > { ' ' } <
+        /CardActionArea>{' '} < /
+        Card >
     );
 }
 

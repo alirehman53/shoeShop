@@ -45,6 +45,12 @@ const useStyles = makeStyles({
     fullList: {
         width: 'auto',
     },
+	iconify: {
+   fontSize: "48px",
+   lineHeight: "1.5em",
+   marginLeft:"25px",
+   marginRight:"25px"
+}
 });
 
 
@@ -309,15 +315,15 @@ function SideDrawer(props) {
         color = "default"
         style = {
             {
-                margin: 'auto',
-                padding: '10px',
+                marginTop: '10px'
             }
         }
         onClick = {
             toggleDrawer('right', true)
         } >
-        <
-        ShoppingCartIcon / >
+		<div classes={classes.iconify} >
+        <ShoppingCartIcon / >
+		</div>
         <
         /Button>{' '} <
         Drawer anchor = {

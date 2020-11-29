@@ -16,6 +16,7 @@ import {
 } from 'redux'
 
 import Typography from '@material-ui/core/Typography';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 import Accordion from '@material-ui/core/Accordion';
@@ -121,7 +122,7 @@ function AdminPanel(props) {
 				<div>
 				
 				<Button  variant = "contained" color = "secondary" onClick = {(event)=>handleClick(event)} >
-                <Typography variant = "button" > Remove < /Typography>
+                <DeleteIcon />
 				</Button>
 				</div>
 				</div>
