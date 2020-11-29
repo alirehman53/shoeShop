@@ -68,6 +68,7 @@ export default function SimpleTabs() {
         } >
         <div className={classes.iconify}>
 		<span className={"iconify"} data-icon="el:home" data-inline="false"></span>
+	        <p>HOME</p>
 		</div>
         <
         /Link>{' '} <
@@ -77,6 +78,7 @@ export default function SimpleTabs() {
         } >
 		<div className={classes.iconify} >
 			<span className={"iconify"} data-icon="twemoji:t-shirt" data-inline="false"></span>
+	                <p>SHIRTS</p>
 		</div>
         
         <
@@ -87,6 +89,7 @@ export default function SimpleTabs() {
         } >
         <div className={classes.iconify} >
 		<img src={shoes} alt={"shoe_icon"} />
+	        <P>SHOES</p>
 		</div>
         <
         /Link>{' '} <
@@ -96,6 +99,7 @@ export default function SimpleTabs() {
         } >
 		<div className={classes.iconify} >
 			<span className={"iconify"} data-icon="noto-v1:jeans" data-inline="false"></span>
+	                <P>JEANS</P>
 		</div>
        
         <
