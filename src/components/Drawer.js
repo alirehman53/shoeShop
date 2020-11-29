@@ -48,8 +48,7 @@ const useStyles = makeStyles({
 	iconify: {
    fontSize: "48px",
    lineHeight: "1.5em",
-   marginLeft:"25px",
-   marginRight:"25px"
+   marginLeft:"5vw"
 }
 });
 
