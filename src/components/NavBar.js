@@ -89,7 +89,7 @@ export default function SimpleTabs() {
         } >
         <div className={classes.iconify} >
 		<img src={shoes} alt={"shoe_icon"} />
-	        <P>SHOES</p>
+	        <p>SHOES</p>
 		</div>
         <
         /Link>{' '} <
@@ -99,7 +99,7 @@ export default function SimpleTabs() {
         } >
 		<div className={classes.iconify} >
 			<span className={"iconify"} data-icon="noto-v1:jeans" data-inline="false"></span>
-	                <P>JEANS</P>
+	                <p>JEANS</p>
 		</div>
        
         <
