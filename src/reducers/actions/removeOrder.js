@@ -6,7 +6,6 @@ export const removeOrder = (order) => {
 
 
         const firestore = getFirestore();
-        const state = getState();
 
 
         firestore.collection('order').doc(order.id).delete().then(() => {
@@ -16,8 +15,8 @@ export const removeOrder = (order) => {
             });
 
         });
-		
-		
+
+
 
 
     }
