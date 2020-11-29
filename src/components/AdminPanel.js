@@ -22,6 +22,10 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Button from '@material-ui/core/Button';
+
+import {removeOrder} from '../reducers/actions/removeOrder';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,6 +41,11 @@ const useStyles = makeStyles((theme) => ({
         fontSize: theme.typography.pxToRem(15),
         color: theme.palette.text.secondary,
     },
+	grid:{
+		display:"grid",
+		gridTemplateColumns:"5fr 15fr 30fr"
+	}
+	
 }));
 
 function AdminPanel(props) {
@@ -59,14 +68,26 @@ function AdminPanel(props) {
     const handleChange2 = (panel) => (event, isExpanded) => {
         setExpanded2(isExpanded ? panel : false);
     };
+	
+	
+	
 
     return ( <
         div className = {
             classes.root
         } > {
 
-            order ? order.map(o =>
-
+            order ? order.map(o =>{
+			
+			    const handleClick = (evt)=>{
+					evt.preventDefault();
+		            console.log(o);
+		            props.removeOrder(o);
+				
+	            };
+				
+		
+				return (
 
                 <
                 Accordion expanded = {
@@ -80,17 +101,32 @@ function AdminPanel(props) {
                     ExpandMoreIcon / >
                 }
                 ariaControls = "panel1bh-content"
-                id = "panel1bh-header" >
+                id = "panel1bh-header">
+				<div className={classes.grid}>
+				<div>
                 <
                 Typography className = {
                     classes.heading
-                } > Ordered by < /Typography> <
+                } > Ordered by  :   
+				< /Typography>
+				</div>
+				<div>
+				<
                 Typography className = {
                     classes.secondaryHeading
                 } > {
                     o.orderDetails.firstName + " " + o.orderDetails.lastName
-                } < /Typography> < /
-                AccordionSummary > <
+                } < /Typography>
+				</div>
+				<div>
+				
+				<Button  variant = "contained" color = "secondary" onClick = {(event)=>handleClick(event)} >
+                <Typography variant = "button" > Remove < /Typography>
+				</Button>
+				</div>
+				</div>
+				
+				</AccordionSummary > <
                 AccordionDetails >
 				
 				<div   style={{display:"grid"}}>
@@ -267,7 +303,8 @@ function AdminPanel(props) {
 
 
 
-                ): null
+			);
+			}): null
 
             }
 
@@ -303,19 +340,19 @@ function AdminPanel(props) {
     };
 
 
-    /*
-    const mapDispatchToProps = (dispatch) => {
-        return {
-            SignUp: (credentials) => dispatch(SignUp(credentials))
+    function mapDispatchToProps(dispatch) {
+    return {
+        removeOrder: (o) => {
+            dispatch(removeOrder(o));
         }
-    }
+    };
+}
 
-    */
 
 
 
     export default compose(
-        connect(mapStateToProps),
+        connect(mapStateToProps,mapDispatchToProps),
         firestoreConnect([{
             collection: 'order'
         }])

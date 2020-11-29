@@ -69,9 +69,7 @@ function AuthNav(props) {
         } < /div>
 
         <
-        div className = {
-            classes.root
-        } >
+        div className = { classes.root } >
 
 
         <

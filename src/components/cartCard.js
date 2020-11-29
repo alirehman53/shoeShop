@@ -1,15 +1,17 @@
 import React from 'react';
 
-import {
-    makeStyles
-} from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const useStyles = makeStyles({
     root: {
@@ -44,18 +46,67 @@ const useStyles = makeStyles({
     },
 });
 
+function RemoveConfirmation(props) {
+
+  const handleClose1 = () => {
+    props.setOpen(false);
+  };
+  
+  const handleClose2 = (evt) => {
+	props.yes(evt);
+  };
+  
+  return (
+    <div>
+      <Dialog
+        open={props.openAlert}
+        onClose={handleClose1}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"WARNING"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Do You Want To Remove This Item from Cart?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose1} color="secondary">
+            No
+          </Button>
+          <Button onClick={(evt)=>handleClose2(evt)} color="secondary">
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+}
+
+
+
+
 export default function CartCard(props) {
     const classes = useStyles();
+	var [openAlert, setOpen] = React.useState(false);
 
     const handleClick = (evt) => {
-        props.removeItem({
-            id: props.id,
-            img: props.image,
-            title: props.title,
-            price: props.price
-        });
-        evt.stopPropagation();
+	
+		props.removeItem({
+        id: props.id,
+		img: props.image,
+        title: props.title,
+        price: props.price
+        });	       
+		evt.stopPropagation();
     };
+	
+	const warningMsg = (evt)=>{
+		
+		setOpen(true);
+		evt.stopPropagation();
+		
+	};
 
     const increment = (evt) => {
         props.incrementQuantity({
@@ -78,7 +129,7 @@ export default function CartCard(props) {
         });
         evt.stopPropagation(evt);
     };
-
+	
     return ( <
         Card className = {
             classes.root
@@ -190,13 +241,14 @@ export default function CartCard(props) {
         Button variant = "contained"
         color = "secondary"
         onClick = {
-            (evt) => handleClick(evt)
+            (evt) => warningMsg(evt)
         } >
         <
         Typography variant = "button" > Remove < /Typography>{' '} < /
         Button > <
-        /CardContent>{' '} < /
-        CardActionArea > <
-        /Card>
+        /CardContent>{' '} 
+		</CardActionArea > 
+		<RemoveConfirmation openAlert={openAlert} setOpen={(decision)=>setOpen(decision)}  yes={(evt)=>handleClick(evt)} />
+		</Card>
     );
 }

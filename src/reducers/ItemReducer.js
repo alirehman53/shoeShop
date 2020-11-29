@@ -108,10 +108,20 @@ const ItemReducer = (state = initState, action) => {
             ...state,
             orderError: "order_success"
         };
+	
 
 
 
     }
+	else if (action.type === 'Remove_Order') {
+        console.log("order Removed!");
+
+        return {
+            ...state,
+            orderError: "order_success"
+        };
+		
+	}
 
     return state;
 };
