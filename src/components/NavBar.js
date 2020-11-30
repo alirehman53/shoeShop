@@ -31,10 +31,11 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold',
     },
 	iconify: {
-   fontSize: "48px",
+   fontSize: "40px",
    lineHeight: "1.5em",
    marginLeft:"3vw",
    marginRight:"3vw"
+   
 }
 
 }));
@@ -68,7 +69,7 @@ export default function SimpleTabs() {
         } >
         <div className={classes.iconify}>
 		<span className={"iconify"} data-icon="el:home" data-inline="false"></span>
-	        <p>HOME</p>
+	        
 		</div>
         <
         /Link>{' '} <
@@ -78,7 +79,6 @@ export default function SimpleTabs() {
         } >
 		<div className={classes.iconify} >
 			<span className={"iconify"} data-icon="twemoji:t-shirt" data-inline="false"></span>
-	                <p>SHIRTS</p>
 		</div>
         
         <
@@ -89,7 +89,7 @@ export default function SimpleTabs() {
         } >
         <div className={classes.iconify} >
 		<img src={shoes} alt={"shoe_icon"} />
-	        <p>SHOES</p>
+	        
 		</div>
         <
         /Link>{' '} <
@@ -99,7 +99,7 @@ export default function SimpleTabs() {
         } >
 		<div className={classes.iconify} >
 			<span className={"iconify"} data-icon="noto-v1:jeans" data-inline="false"></span>
-	                <p>JEANS</p>
+	               
 		</div>
        
         <
