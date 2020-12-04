@@ -8,11 +8,13 @@ import Tabs from '@material-ui/core/Tabs';
 import shoes from '../images/shoes.ico';
 
 
+
 import {
     Link
 } from 'react-router-dom';
 
 import SideDrawer from './Drawer';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,11 +33,11 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold',
     },
 	iconify: {
-   fontSize: "40px",
-   lineHeight: "1.5em",
+   fontSize: "30px",
+   marginBottom:"0",
    marginLeft:"3vw",
    marginRight:"3vw"
-   
+
 }
 
 }));
@@ -69,8 +71,10 @@ export default function SimpleTabs() {
         } >
         <div className={classes.iconify}>
 		<span className={"iconify"} data-icon="el:home" data-inline="false"></span>
-	        
+		<p style={{fontSize:"0.5em",marginTop:"0.1%"}}>home</p>
+		
 		</div>
+		
         <
         /Link>{' '} <
         Link to = "Shirts"
@@ -79,6 +83,7 @@ export default function SimpleTabs() {
         } >
 		<div className={classes.iconify} >
 			<span className={"iconify"} data-icon="twemoji:t-shirt" data-inline="false"></span>
+			<p style={{fontSize:"0.5em",marginTop:"0.1%"}}>shirt</p>
 		</div>
         
         <
@@ -88,8 +93,8 @@ export default function SimpleTabs() {
             classes.link
         } >
         <div className={classes.iconify} >
-		<img src={shoes} alt={"shoe_icon"} />
-	        
+		<img width="50px" height="35px" src={shoes} alt={"shoe_icon"} />
+		<p style={{fontSize:"0.5em",marginTop:"0.1%"}}>shoes</p>
 		</div>
         <
         /Link>{' '} <
@@ -99,7 +104,7 @@ export default function SimpleTabs() {
         } >
 		<div className={classes.iconify} >
 			<span className={"iconify"} data-icon="noto-v1:jeans" data-inline="false"></span>
-	               
+			<p style={{fontSize:"0.5em",marginTop:"0.1%"}}>jeans</p>
 		</div>
        
         <
