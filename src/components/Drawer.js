@@ -38,6 +38,8 @@ import {
     compose
 } from 'redux'
 
+import { Badge } from '@material-ui/core'
+
 const useStyles = makeStyles({
     list: {
         width: '50vw',
@@ -323,8 +325,9 @@ function SideDrawer(props) {
         } >
         <
         div classes = { classes.iconify } >
-        <
-        ShoppingCartIcon / >
+		<Badge badgeContent={props.tot_items} color="secondary">
+        <ShoppingCartIcon / >
+		</Badge>
         <
         /div> < /
         Button > { ' ' } <
@@ -355,6 +358,7 @@ function mapStateToProps(state) {
     let Cart = state.firebase.profile.Cart ? state.firebase.profile.Cart : null;
 
     let amt = 0;
+	let items=0;
 
 
 
@@ -364,6 +368,7 @@ function mapStateToProps(state) {
 
         for (let i = 0; i < Cart.length; i++) {
             amt += Cart[i].price * Cart[i].quantity;
+			items+=Cart[i].quantity;
         }
 
     }
@@ -376,6 +381,7 @@ function mapStateToProps(state) {
         jeans: jeans,
         shoes: shoes,
         bill: amt,
+		tot_items:items
     };
 }
 
