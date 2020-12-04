@@ -35,6 +35,8 @@ const useStyles = makeStyles((theme) => ({
 	iconify: {
    fontSize: "30px",
    marginBottom:"0",
+   paddingBottom:"0",
+   paddingTop:"0",
    marginLeft:"3vw",
    marginRight:"3vw"
 
@@ -92,8 +94,8 @@ export default function SimpleTabs() {
         className = {
             classes.link
         } >
-        <div className={classes.iconify} >
-		<img width="50px" height="35px" src={shoes} alt={"shoe_icon"} />
+        <div className={classes.iconify}>
+		<img style={{display:"block",height:"40px"}} src={shoes} alt={"shoe_icon"} />
 		<p style={{fontSize:"0.5em",marginTop:"0.1%"}}>shoes</p>
 		</div>
         <
