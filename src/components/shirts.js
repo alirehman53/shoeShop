@@ -51,6 +51,7 @@ function Shirts(props) {
                 addToCart = {
                     props.addToCart
                 }
+
                 />
 
             ) : null

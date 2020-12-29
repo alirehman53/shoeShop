@@ -13,18 +13,20 @@ import Typography from '@material-ui/core/Typography';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import sound from '../audio/notify.mp3';
 import ReactAudioPlayer from 'react-audio-player';
+import {Link} from 'react-router-dom';
 
 
 const useStyles = makeStyles({
     root: {
 
         marginBottom: '8px',
-        backgroundColor: 'grey',
+        backgroundColor: 'white',
         border: '4px solid white',
+		height:"70vh",
+		width:"70vw"
     },
     ara: {
         display: 'flex',
@@ -47,7 +49,13 @@ const useStyles = makeStyles({
     footer: {
         backgroundColor: '#37474F',
         color: 'white',
-    }
+    },
+    button: {
+        maxWidth: '35px',
+        maxHeight: '35px',
+        minWidth: '35px',
+        minHeight: '35px',
+    },
 });
 
 function ItemAddedNotification(props) {
@@ -126,28 +134,69 @@ function MediaCard(props) {
     const {
         authentication
     } = props;
+	
+	let [quantity, setQuantity] = React.useState(1);
+	let itemType=window.location.pathname.split('/')[1];
 
     const handleClick = () => {
         if (!authentication.uid) {
             alert("Login Please");
 
         } else {
-            props.addToCart({
+			function pro(){
+				props.addToCart({
                 id: props.id,
                 img: props.image,
                 title: props.title,
-                price: props.price
-            });
-			document.getElementById("audio"+props.id).play();
+                price: props.price,
+				quantity:quantity
+                });
+				
+				
+				return Promise.resolve("Success"); 
+			}
+			
+			
+			pro().then(()=>{
+				document.getElementById("audio2"+props.id).play();
+			    setTimeout(()=>{document.getElementById("link"+props.id).click()},1500);
+			});
+			
+			
 
         }
 
 
     };
 	
+	const increment = (event) => {
+        if (!authentication.uid) {
+            alert("Login Please");
+
+        } else {
+            setQuantity(quantity+1);
+        }
+		event.stopPropagation();
+
+
+    };
+	
+	const decrement = (event) => {
+        if (!authentication.uid) {
+            alert("Login Please");
+
+        } else {
+			if(quantity > 1 ){
+			    setQuantity(quantity-1);
+			}
+        }
+		event.stopPropagation();
+
+
+    };
+	
 
     return (
-	<Link to={props.id.toString()} style={{textDecoration:"none"}}>
 	    <Card className = {
             classes.root
         } >
@@ -195,11 +244,23 @@ function MediaCard(props) {
         } {
             ' '
         } <
-        /Typography> 
+        /Typography><
+        div style = {{display: 'flex'}}> 
+		
+		<Button variant = "contained" color = "primary" onClick = {(event) => increment(event)} className ={classes.button}>
+            <Typography gutterBottom variant = "h5" component = "h2" >+</Typography>
+		</Button>
+
+        <Typography gutterBottom variant = "h5" component = "h2" style = {{margin: '5px',color: 'grey'}}>{quantity}</Typography>
+
+        <Button variant = "contained" color = "primary" onClick = {(event) => decrement(event)} className = {classes.button} >
+            <Typography gutterBottom variant = "h5" component = "h2" >-</Typography>
+		</Button>
+		</div>
 		
 		<ItemAddedNotification auth = {authentication} clk = {handleClick}/> 
-		<ReactAudioPlayer id={"audio"+props.id} src={sound} />
-		
+		<ReactAudioPlayer id={"audio2"+props.id} src={sound} />
+		<Link id={"link"+props.id} to={"/"+itemType} style={{textDecoration:"none"}}></Link>
 		
 		</CardContent>
 		
@@ -208,7 +269,6 @@ function MediaCard(props) {
 		</CardActionArea> 
 		
 		</Card >
-		</Link>
     );
 }
 

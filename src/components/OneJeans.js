@@ -1,12 +1,17 @@
 import React from 'react';
+
 import {
     connect
 } from 'react-redux';
 
-import MediaCard from './Card';
+
+
+
+import MediaCard from "./OneCard";
 import {
     addToCart
 } from '../reducers/actions/AddToCart'
+
 import {
     firestoreConnect
 } from 'react-redux-firebase'
@@ -16,9 +21,11 @@ import {
 import styled from 'styled-components';
 
 
-
-function Jeans(props) {
-    const {
+function OneJeans(props) {
+	
+	let itemId=window.location.pathname.split('/')[2];
+	
+	const {
         jeans,
 
     } = props;
@@ -33,11 +40,9 @@ function Jeans(props) {
   `;
 
 
-
-
     return ( <
         CardWrapper > {
-            jeans ? jeans.map((jean) => ( <
+            jeans ? jeans.map((jean) => (jean.id===itemId)?(( <
                 MediaCard id = {
                     jean.id
                 }
@@ -54,7 +59,7 @@ function Jeans(props) {
                     props.addToCart
                 }
                 />
-            )) : null
+            )) : null):null
         } <
         /CardWrapper>
     );
@@ -77,7 +82,6 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-//export default connect(mapStateToProps, mapDispatchToProps)(Jeans);
 
 
 export default compose(
@@ -85,4 +89,13 @@ export default compose(
     firestoreConnect([{
         collection: 'jeans'
     }])
-)(Jeans);
+)(OneJeans);
+
+
+
+
+
+
+
+
+

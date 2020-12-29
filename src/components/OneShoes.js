@@ -1,12 +1,15 @@
 import React from 'react';
+
 import {
     connect
 } from 'react-redux';
 
-import MediaCard from './Card';
+
+import MediaCard from "./OneCard";
 import {
     addToCart
 } from '../reducers/actions/AddToCart'
+
 import {
     firestoreConnect
 } from 'react-redux-firebase'
@@ -16,10 +19,14 @@ import {
 import styled from 'styled-components';
 
 
+function OneShoes(props) {
+	
+	let itemId=window.location.pathname.split('/')[2];
 
-function Jeans(props) {
+
+    console.log(props);
     const {
-        jeans,
+        shoes,
 
     } = props;
 
@@ -34,55 +41,76 @@ function Jeans(props) {
 
 
 
-
     return ( <
-        CardWrapper > {
-            jeans ? jeans.map((jean) => ( <
+        CardWrapper >
+
+        {
+            shoes ? shoes.map(
+                (shoe) =>
+
+                (shoe.id === itemId)?(<
                 MediaCard id = {
-                    jean.id
+                    shoe.id
                 }
+
                 title = {
-                    jean.name
+                    shoe.name
                 }
                 image = {
-                    jean.img
+                    shoe.img
                 }
                 price = {
-                    jean.price
+                    shoe.price
                 }
+
                 addToCart = {
                     props.addToCart
                 }
-                />
-            )) : null
-        } <
-        /CardWrapper>
+
+                />):null
+
+            ) : null
+
+
+        }
+
+        <
+        /CardWrapper >
     );
 }
 
+
+
 function mapStateToProps(state) {
-    let jeans = null;
-    jeans = state.firestore.ordered.jeans ? state.firestore.ordered.jeans : null;
+    let shoes = null;
+    shoes = state.firestore.ordered.shoes ? state.firestore.ordered.shoes : null;
 
     return {
-        jeans: jeans,
+        shoes: shoes,
+
     }
 }
+
 
 function mapDispatchToProps(dispatch) {
     return {
         addToCart: (item) => {
-            dispatch(addToCart(item));
-        },
-    };
+            dispatch(addToCart(item))
+        }
+
+
+
+    }
 }
 
-//export default connect(mapStateToProps, mapDispatchToProps)(Jeans);
+
+//export default connect(mapStateToProps, mapDispatchToProps)(Shoes);
+
 
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([{
-        collection: 'jeans'
+        collection: 'shoes'
     }])
-)(Jeans);
+)(OneShoes);

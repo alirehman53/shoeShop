@@ -1,18 +1,10 @@
 import React from 'react';
-
-import {
-    makeStyles
-} from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-
 import Typography from '@material-ui/core/Typography';
-
-
-
 
 
 
@@ -21,9 +13,8 @@ const useStyles = makeStyles({
     root: {
 
         marginBottom: '8px',
-        backgroundColor: 'grey',
-        border: '4px solid white',
-
+        backgroundColor: 'white',
+        border: '2px solid gray',
     },
     ara: {
         display: 'flex',
@@ -41,47 +32,52 @@ const useStyles = makeStyles({
         flex: 1,
     },
     type: {
-        color: 'white',
+        color: 'gray',
     },
     footer: {
         backgroundColor: '#37474F',
         color: 'white',
     },
+    button: {
+        maxWidth: '35px',
+        maxHeight: '35px',
+        minWidth: '35px',
+        minHeight: '35px',
+    },
 });
 
 
-function AdminCard(props) {
+function YourOrderCard(props) {
     const classes = useStyles();
-
-
-
-    return ( <
-        Card className = {
+	
+    return (
+	    <Card className = {
             classes.root
         } >
-        <
-        CardActionArea className = {
+        <CardActionArea className = {
             classes.ara
         } >
-        <
-        CardMedia className = {
-            classes.media
-        }
+		
+		
+		 <CardMedia className={classes.media}
         image = {
             props.image
         }
         title = {
             props.title
         }
-        />{' '} <
-        CardContent className = {
+        >
+		
+		</CardMedia>
+		
+		
+
+		<CardContent className = {
             classes.content
         } >
         <
         Typography gutterBottom variant = "h6"
-        className = {
-            classes.type
-        }
+        className = {classes.type}
         component = "h6" > {
             ' '
         } {
@@ -89,29 +85,27 @@ function AdminCard(props) {
         } {
             ' '
         } <
-        /Typography>{' '} <
-        Typography variant = "body2"
-        className = {
-            classes.type
-        }
-        color = "textSecondary"
-        component = "p" > {
-            ' '
-        } {
-            'Rs-' + props.price.toString()
-        } < br / > {
-            "Quantity: " + props.quantity.toString()
-        } <
-        /Typography>   < /
-        CardContent > {
-            ' '
-        } <
-        /CardActionArea> < /
-        Card >
+        /Typography>{' '} 
+		<Typography variant = "body2" className = {classes.type} color = "textSecondary" component = "p" > 
+		    {'Rs-' + props.price.toString()} 
+		</Typography>
+		
+		<div style = {{display: 'flex'}}> 
+		
+        <Typography gutterBottom variant = "h5" component = "h2" style = {{margin: '5px',color: 'grey'}}>{'x'+props.quantity.toString()}</Typography>
+
+		</div>
+		
+		
+		</CardContent>
+		
+
+		
+		</CardActionArea> 
+		
+		</Card >
     );
 }
 
 
-
-
-export default AdminCard;
+export default YourOrderCard;

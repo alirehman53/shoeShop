@@ -54,7 +54,9 @@ function RemoveConfirmation(props) {
   };
   
   const handleClose2 = (evt) => {
-	props.yes(evt);
+    props.yes(evt);
+    props.setOpen(false);
+    
   };
   
   return (

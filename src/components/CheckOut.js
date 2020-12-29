@@ -7,17 +7,13 @@ import {
 } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-
 import CardContent from '@material-ui/core/CardContent';
-
-
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 import {
     connect
 } from 'react-redux';
-
 
 import {
     firestoreConnect
@@ -28,6 +24,7 @@ import {
 import {
     PlaceOrder
 } from '../reducers/actions/PlaceOrder'
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -230,7 +227,7 @@ function ColorTextFields(props) {
     });
 
     if (props.err) {
-        window.location.href = "http://localhost:3000/ordered";
+		document.getElementById("link").click();
     }
 
 
@@ -278,6 +275,7 @@ function ColorTextFields(props) {
 
             }
         } >
+		<Link id ="link" style={{display:"none"}} to="/ordered"></Link> 
         <
         div style = {
             {
@@ -743,10 +741,7 @@ function CheckOut(props) {
 
         />
 
-
-        <
-        /
-        div >
+        </div >
     );
 }
 

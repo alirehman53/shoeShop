@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+    useEffect
+} from 'react';
 import clsx from 'clsx';
 import {
     makeStyles
@@ -22,6 +24,10 @@ import {
 import {
     decrementQuantity
 } from '../reducers/actions/DecrementQuantity'
+
+import {
+    removeAll
+} from '../reducers/actions/RemoveAll'
 
 import {
     connect
@@ -50,8 +56,8 @@ const useStyles = makeStyles({
     iconify: {
         fontSize: "40px",
         lineHeight: "1.5em",
-        marginLeft:"3vw",
-        marginRight:"3vw"
+        marginLeft: "3vw",
+        marginRight: "3vw"
     }
 });
 
@@ -85,6 +91,10 @@ function SideDrawer(props) {
             [anchor]: open,
         });
     };
+
+
+
+
 
     const list = (anchor) => ( <
         div className = {
@@ -126,6 +136,8 @@ function SideDrawer(props) {
             props.bill
         } < /h3> < /
         Typography >
+
+
 
         {
             cartItem ? (cartItem.map((item) => {
@@ -310,6 +322,29 @@ function SideDrawer(props) {
         /div>
     );
 
+
+
+
+    const shortCutDEl = (event) => {
+
+        if (event.code === 'KeyD' && (event.ctrlKey || event.metaKey) && (event.altKey)) {
+            props.removeAll();
+        }
+
+
+    };
+
+    useEffect(() => {
+        document.addEventListener("keydown", shortCutDEl);
+        return () => document.removeEventListener("keydown", shortCutDEl);
+    });
+
+
+
+
+
+
+
     return ( <
         div >
         <
@@ -325,10 +360,13 @@ function SideDrawer(props) {
         } >
         <
         div classes = { classes.iconify } >
-		<Badge badgeContent={props.tot_items} color="secondary">
-        <ShoppingCartIcon / >
-		</Badge>
         <
+        Badge badgeContent = { props.tot_items }
+        color = "secondary" >
+        <
+        ShoppingCartIcon / >
+        <
+        /Badge> <
         /div> < /
         Button > { ' ' } <
         Drawer anchor = {
@@ -358,7 +396,7 @@ function mapStateToProps(state) {
     let Cart = state.firebase.profile.Cart ? state.firebase.profile.Cart : null;
 
     let amt = 0;
-	let items=0;
+    let items = 0;
 
 
 
@@ -368,7 +406,7 @@ function mapStateToProps(state) {
 
         for (let i = 0; i < Cart.length; i++) {
             amt += Cart[i].price * Cart[i].quantity;
-			items+=Cart[i].quantity;
+            items += Cart[i].quantity;
         }
 
     }
@@ -381,7 +419,7 @@ function mapStateToProps(state) {
         jeans: jeans,
         shoes: shoes,
         bill: amt,
-		tot_items:items
+        tot_items: items
     };
 }
 
@@ -395,6 +433,9 @@ function mapDispatchToProps(dispatch) {
         },
         decrementQuantity: (id) => {
             dispatch(decrementQuantity(id));
+        },
+        removeAll: () => {
+            dispatch(removeAll());
         },
     };
 }

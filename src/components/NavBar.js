@@ -6,13 +6,9 @@ import {
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import shoes from '../images/shoes.ico';
-
-
-
 import {
     Link
 } from 'react-router-dom';
-
 import SideDrawer from './Drawer';
 
 
@@ -109,15 +105,21 @@ export default function SimpleTabs() {
 			<p style={{fontSize:"0.5em",marginTop:"0.1%"}}>jeans</p>
 		</div>
        
-        <
-        /Link> <
-        SideDrawer / > {
-            ' '
-        } <
-        /Tabs>{' '} 
+        </Link> 
+		<SideDrawer />
+		
+		<Link to = "orders" className = {classes.link} >
+		<div className={classes.iconify} >
+			<i className={"fas fa-box"}></i>
+			<p style={{fontSize:"0.5em",marginTop:"0.1%"}}>orders</p>
+		</div>
+        </Link>
+		
+		
+        </Tabs>
 
         <
-        /AppBar>{' '} < /
+        /AppBar>< /
         nav > {
             ' '
         } <
